@@ -6,9 +6,9 @@
     <title>Gestión de Mantenimiento - Doosan P126TI-II</title>
     <style>
         :root {
-            --primary-color: #0033a0; /* Azul marino tipo Doosan */
-            --secondary-color: #e3000f; /* Rojo de acento */
-            --bg-color: #f4f4f4;
+            --primary-color: #0033a0;
+            --secondary-color: #e3000f;
+            --bg-color: #f4f4f9;
             --text-color: #333;
         }
         body {
@@ -23,33 +23,55 @@
             background-color: var(--primary-color);
             color: white;
             text-align: center;
-            padding: 2rem 1rem;
+            padding: 1.5rem 1rem;
             border-bottom: 5px solid var(--secondary-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        header h1 { margin: 0; font-size: 1.8rem; }
-        header p { margin: 5px 0 0 0; font-weight: bold; }
-        
+        header h1 { margin: 0; font-size: 1.5rem; }
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            background-color: #e0e0e0;
+            padding: 10px;
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--primary-color);
+            margin: 5px 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        nav a:hover { color: var(--secondary-color); }
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 20px auto;
+            padding: 0 15px;
+        }
+        .system-card {
             background: white;
-            padding: 20px 40px;
+            padding: 25px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
         }
         h2 {
             color: var(--primary-color);
             border-bottom: 2px solid var(--primary-color);
             padding-bottom: 5px;
-            margin-top: 30px;
+            margin-top: 0;
         }
+        h3 { color: var(--secondary-color); margin-top: 25px; }
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 15px 0;
+            font-size: 0.9rem;
         }
-        table, th, td { border: 1px solid #ddd; }
-        th, td { padding: 12px; text-align: left; }
+        table, th, td { border: 1px solid #ccc; }
+        th, td { padding: 10px; text-align: left; }
         th { background-color: var(--primary-color); color: white; }
         tr:nth-child(even) { background-color: #f9f9f9; }
         
@@ -58,91 +80,350 @@
             border-left: 5px solid var(--secondary-color);
             padding: 10px 15px;
             margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        .img-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .img-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Grupo Electrógeno Doosan P126TI-II / SDMO D330</h1>
-        <p>Panel de Gestión de Mantenimiento - Grupo 1</p>
+        <h1>Mantenimiento Doosan P126TI-II / SDMO D330</h1>
     </header>
 
+    <!-- Menú de navegación rápida -->
+    <nav>
+        <a href="#combustible">1. Combustible</a>
+        <a href="#lubricacion">2. Lubricación</a>
+        <a href="#refrigeracion">3. Refrigeración</a>
+        <a href="#admision">4. Admisión/Turbo</a>
+        <a href="#escape">5. Escape</a>
+        <a href="#electrico">6. Eléctrico</a>
+        <a href="#control">7. Control</a>
+        <a href="#alternador">8. Alternador</a>
+    </nav>
+
     <div class="container">
-        <p><strong>Sistema analizado:</strong> Lubricación (Cárter, bomba de aceite, filtros, enfriador, respiradero, manómetro).</p>
 
-        <section>
-            <h2>1. Criticidad de Subconjuntos</h2>
-            <p>Clasificación basada en el análisis FMECA (Número de Prioridad de Riesgo - NPR).</p>
-            <table>
-                <tr>
-                    <th>Subconjunto</th>
-                    <th>Clasificación</th>
-                    <th>Justificación (Modo de falla / Efecto)</th>
-                </tr>
-                <tr>
-                    <td>Bomba de Aceite</td>
-                    <td><strong>Crítico</strong></td>
-                    <td>Pérdida de presión total; riesgo inminente de fundición de metales del cigüeñal.</td>
-                </tr>
-                <tr>
-                    <td>Enfriador de Aceite</td>
-                    <td><strong>Crítico</strong></td>
-                    <td>Rotura interna; mezcla de agua-aceite degradando la lubricación y recalentando el motor.</td>
-                </tr>
-                <tr>
-                    <td>Respiradero del Cárter</td>
-                    <td>No Crítico</td>
-                    <td>Obstrucción leve; genera sobrepresión paulatina pero no detiene la operación de emergencia.</td>
-                </tr>
-            </table>
-        </section>
-
-        <section>
-            <h2>2. Trabajos y Estimación de Horas-Hombre</h2>
-            <table>
-                <tr>
-                    <th>Trabajo de Mantenimiento</th>
-                    <th>Dotación</th>
-                    <th>Duración Tarea</th>
-                    <th>Horas-Hombre (HH) Totales</th>
-                </tr>
-                <tr>
-                    <td>Renovación de aceite y cambio de filtros</td>
-                    <td>1 Mecánico + 1 Ayudante</td>
-                    <td>1.5 horas</td>
-                    <td>3.0 HH</td>
-                </tr>
-                <tr>
-                    <td>Inspección y limpieza del enfriador de aceite</td>
-                    <td>2 Mecánicos</td>
-                    <td>4.0 horas</td>
-                    <td>8.0 HH</td>
-                </tr>
-            </table>
-        </section>
-
-        <section>
-            <h2>3. Herramientas y Equipos Necesarios</h2>
-            <ul>
-                <li><strong>Herramientas Genéricas:</strong> Juego de llaves de corona y dados (métricas), recipientes para recolección de fluidos, paños absorbentes.</li>
-                <li><strong>Herramientas Específicas:</strong> Extractor de filtros de aceite de cinta o cadena.</li>
-                <li><strong>Instrumentos con Calibración Vigente:</strong> Llave dinamométrica (torquímetro) para asegurar el apriete correcto del tapón del cárter y pernos del enfriador.</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>4. Seguridad y Control de Energías Residuales</h2>
-            <div class="alert-box">
-                <strong>Paso 0:</strong> Aplicación estricta de protocolo de Bloqueo y Etiquetado (LOTO) en tablero eléctrico y válvulas de partida antes de iniciar.
+        <!-- ================= SISTEMA 1 ================= -->
+        <div id="combustible" class="system-card">
+            <h2>1. Sistema de Combustible</h2>
+            <p><strong>Subconjuntos:</strong> Estanque de servicio, prefiltro separador, filtros, bomba de inyección, inyectores, línea de retorno.</p>
+            
+            <div class="img-container">
+                <!-- AQUÍ VA LA FOTO: Reemplaza 'foto-combustible.jpg' con tu imagen del laboratorio -->
+                <img src="foto-combustible.jpg" alt="Sistema de Combustible Doosan">
+                <p><em>Figura 1: Sistema de combustible y bomba de inyección.</em></p>
             </div>
+
+            <h3>1. Criticidad</h3>
+            <table>
+                <tr><th>Subconjunto</th><th>Clasificación</th><th>Justificación (Modo de falla / Efecto)</th></tr>
+                <tr><td>Bomba de Inyección</td><td><strong>Crítico</strong></td><td>Desgaste interno / Caída de presión, motor no arranca o pierde potencia severamente.</td></tr>
+                <tr><td>Inyectores</td><td><strong>Crítico</strong></td><td>Tobera obstruida / Mala atomización, genera humo negro y alza de temperatura térmica.</td></tr>
+                <tr><td>Línea de retorno</td><td>No Crítico</td><td>Fisura leve / Fuga menor contenida en bandeja, no detiene la operación inmediatamente.</td></tr>
+            </table>
+
+            <h3>2. Trabajos y Estimación de Horas-Hombre</h3>
+            <table>
+                <tr><th>Trabajo</th><th>Dotación</th><th>Duración</th><th>HH Totales</th></tr>
+                <tr><td>Reemplazo de inyectores y calibración</td><td>1 Mecánico + 1 Ayudante</td><td>3.0 h</td><td>6.0 HH</td></tr>
+                <tr><td>Cambio de filtros y purga del sistema</td><td>1 Mecánico</td><td>1.0 h</td><td>1.0 HH</td></tr>
+            </table>
+
+            <h3>3. Herramientas</h3>
             <ul>
-                <li><strong>Energía Térmica:</strong> El aceite y el bloque del motor conservan altas temperaturas tras la detención. <em>Medida:</em> Esperar el tiempo de enfriamiento indicado en manual; uso de guantes térmicos antideslizantes.</li>
-                <li><strong>Energía de Presión:</strong> Presión residual en el circuito tras apagar la bomba. <em>Medida:</em> Abrir lentamente el tapón de llenado o válvulas de purga antes de soltar mangueras.</li>
-                <li><strong>Riesgo Químico y Ambiental:</strong> Contacto con aceite lubricante usado. <em>Medida:</em> Uso de EPP específico (lentes y guantes de nitrilo). Gestión de residuos peligrosos (aceite y filtros impregnados) depositándolos en tambores certificados para cumplir con el <strong>Anexo I del MARPOL</strong> a bordo.</li>
+                <li><strong>Genéricas:</strong> Llaves combinadas, alicates, bandejas de recolección.</li>
+                <li><strong>Específicas:</strong> Extractor de inyectores, bomba manual de purga.</li>
+                <li><strong>Calibración Vigente:</strong> Torquímetro (para pernos de inyectores), probador de presión de inyectores (Pop Tester).</li>
             </ul>
-        </section>
+
+            <h3>4. Seguridad y Control de Energías Residuales</h3>
+            <div class="alert-box"><strong>LOTO:</strong> Bloqueo de válvulas desde estanque diario y desconexión de baterías.</div>
+            <ul>
+                <li><strong>Energía de Presión:</strong> Presión residual en líneas de alta presión. <em>Control:</em> Aflojar racores lentamente usando paños para contener atomización. Riesgo de inyección subcutánea.</li>
+                <li><strong>Química / MARPOL:</strong> Derrame de diésel. <em>Control:</em> Uso de bandejas antiderrame (SOPEP). Disposición de trapos según Anexo I del MARPOL.</li>
+            </ul>
+        </div>
+
+        <!-- ================= SISTEMA 2 ================= -->
+        <div id="lubricacion" class="system-card">
+            <h2>2. Sistema de Lubricación</h2>
+            <p><strong>Subconjuntos:</strong> Cárter, bomba de aceite, filtros, enfriador de aceite, respiradero, manómetro.</p>
+            
+            <div class="img-container">
+                <!-- AQUÍ VA LA FOTO: Reemplaza 'foto-lubricacion.jpg' con tu imagen del laboratorio -->
+                <img src="foto-lubricacion.jpg" alt="Sistema de Lubricación Doosan">
+                <p><em>Figura 2: Filtros y enfriador de aceite.</em></p>
+            </div>
+
+            <h3>1. Criticidad</h3>
+            <table>
+                <tr><th>Subconjunto</th><th>Clasificación</th><th>Justificación</th></tr>
+                <tr><td>Bomba de Aceite</td><td><strong>Crítico</strong></td><td>Falla de engranajes / Pérdida de presión total; fundición de metales.</td></tr>
+                <tr><td>Enfriador de Aceite</td><td><strong>Crítico</strong></td><td>Rotura de haz tubular / Mezcla agua-aceite, pérdida de propiedades lubricantes.</td></tr>
+            </table>
+
+            <h3>2. Trabajos y Estimación de Horas-Hombre</h3>
+            <table>
+                <tr><th>Trabajo</th><th>Dotación</th><th>Duración</th><th>HH Totales</th></tr>
+                <tr><td>Renovación de aceite y filtros</td><td>1 Mecánico + 1 Ayudante</td><td>1.5 h</td><td>3.0 HH</td></tr>
+            </table>
+
+            <h3>3. Herramientas</h3>
+            <ul>
+                <li><strong>Genéricas:</strong> Dados, llaves, tambores de recolección.</li>
+                <li><strong>Específicas:</strong> Llave de cinta/cadena para filtros.</li>
+                <li><strong>Calibración Vigente:</strong> Torquímetro para tapón del cárter.</li>
+            </ul>
+
+            <h3>4. Seguridad y Control de Energías Residuales</h3>
+            <div class="alert-box"><strong>LOTO:</strong> Etiquetado en panel de control para evitar arranque intempestivo.</div>
+            <ul>
+                <li><strong>Térmica:</strong> Aceite a alta temperatura tras detención. <em>Control:</em> Esperar enfriamiento según manual, usar guantes térmicos.</li>
+                <li><strong>Gravitacional:</strong> Izaje de tambores de aceite usado. <em>Control:</em> Uso de tecles certificados.</li>
+            </ul>
+        </div>
+
+        <!-- ================= SISTEMA 3 ================= -->
+        <div id="refrigeracion" class="system-card">
+            <h2>3. Sistema de Refrigeración</h2>
+            <p><strong>Subconjuntos:</strong> Radiador, ventilador y correa, bomba de agua, termostato, circuito del aftercooler.</p>
+            
+            <div class="img-container">
+                <!-- AQUÍ VA LA FOTO: Reemplaza 'foto-refrigeracion.jpg' -->
+                <img src="foto-refrigeracion.jpg" alt="Sistema de Refrigeración">
+            </div>
+
+            <h3>1. Criticidad</h3>
+            <table>
+                <tr><th>Subconjunto</th><th>Clasificación</th><th>Justificación</th></tr>
+                <tr><td>Bomba de Agua</td><td><strong>Crítico</strong></td><td>Falla de rodamiento o sello / Sobrecalentamiento inmediato del bloque.</td></tr>
+                <tr><td>Termostato</td><td><strong>Crítico</strong></td><td>Falla en posición cerrada / Impide el flujo al radiador, gripado de pistones.</td></tr>
+                <tr><td>Correas</td><td>No Crítico</td><td>Desgaste / Puede ser detectado y reemplazado antes del corte total en inspección visual.</td></tr>
+            </table>
+
+            <h3>2. Trabajos y Estimación de Horas-Hombre</h3>
+            <table>
+                <tr><th>Trabajo</th><th>Dotación</th><th>Duración</th><th>HH Totales</th></tr>
+                <tr><td>Cambio de bomba de agua y correas</td><td>2 Mecánicos</td><td>3.0 h</td><td>6.0 HH</td></tr>
+            </table>
+
+            <h3>3. Herramientas</h3>
+            <ul>
+                <li><strong>Genéricas:</strong> Llaves combinadas, destornilladores, recipientes.</li>
+                <li><strong>Calibración Vigente:</strong> Tensiómetro de correas (para evitar sobrecarga radial en los rodamientos).</li>
+            </ul>
+
+            <h3>4. Seguridad y Control de Energías Residuales</h3>
+            <div class="alert-box"><strong>LOTO:</strong> Bloqueo eléctrico del partidor.</div>
+            <ul>
+                <li><strong>Presión y Térmica:</strong> Circuito presurizado y caliente. <em>Control:</em> Nunca abrir la tapa del radiador en caliente. Despresurizar lentamente.</li>
+                <li><strong>Química:</strong> Anticongelante/Refrigerante (Tóxico). <em>Control:</em> Lentes de seguridad, recolección hermética para disposición final.</li>
+            </ul>
+        </div>
+
+        <!-- ================= SISTEMA 4 ================= -->
+        <div id="admision" class="system-card">
+            <h2>4. Admisión y Sobrealimentación</h2>
+            <p><strong>Subconjuntos:</strong> Filtro de aire, turbocompresor, aftercooler, colector de admisión.</p>
+            
+            <div class="img-container">
+                <!-- AQUÍ VA LA FOTO: Reemplaza 'foto-turbo.jpg' -->
+                <img src="foto-turbo.jpg" alt="Turbo y Admisión">
+            </div>
+
+            <h3>1. Criticidad</h3>
+            <table>
+                <tr><th>Subconjunto</th><th>Clasificación</th><th>Justificación</th></tr>
+                <tr><td>Turbocompresor</td><td><strong>Crítico</strong></td><td>Falla de cojinetes / Ingreso de aceite a la admisión (riesgo de embalamiento u "over-speed").</td></tr>
+                <tr><td>Filtro de aire</td><td>No Crítico</td><td>Saturación / Pérdida paulatina de potencia, medible con indicador de restricción.</td></tr>
+            </table>
+
+            <h3>2. Trabajos y Estimación de Horas-Hombre</h3>
+            <table>
+                <tr><th>Trabajo</th><th>Dotación</th><th>Duración</th><th>HH Totales</th></tr>
+                <tr><td>Overhaul a turbocompresor</td><td>1 Mecánico Especialista + 1 Ayud.</td><td>8.0 h</td><td>16.0 HH</td></tr>
+            </table>
+
+            <h3>3. Herramientas</h3>
+            <ul>
+                <li><strong>Genéricas:</strong> Llaves Allen, dados.</li>
+                <li><strong>Específicas:</strong> Extractor de rodamientos de turbina.</li>
+                <li><strong>Calibración Vigente:</strong> Reloj comparador (Dial gauge) para medir juego axial/radial del eje del turbo, Torquímetro.</li>
+            </ul>
+
+            <h3>4. Seguridad y Control de Energías Residuales</h3>
+            <ul>
+                <li><strong>Rotacional (Inercia):</strong> El eje del turbo sigue girando a altas RPM tras detener el motor. <em>Control:</em> Esperar cese total de rotación escuchando la carcasa.</li>
+                <li><strong>Térmica:</strong> Carcasa de escape del turbo a más de 400°C. <em>Control:</em> Uso de guantes para alta temperatura, esperar enfriamiento.</li>
+            </ul>
+        </div>
+
+        <!-- ================= SISTEMA 5 ================= -->
+        <div id="escape" class="system-card">
+            <h2>5. Sistema de Escape</h2>
+            <p><strong>Subconjuntos:</strong> Colector de escape, turbina, silenciador, conducto de salida.</p>
+            
+            <div class="img-container">
+                <!-- AQUÍ VA LA FOTO: Reemplaza 'foto-escape.jpg' -->
+                <img src="foto-escape.jpg" alt="Sistema de Escape">
+            </div>
+
+            <h3>1. Criticidad</h3>
+            <table>
+                <tr><th>Subconjunto</th><th>Clasificación</th><th>Justificación</th></tr>
+                <tr><td>Colector de Escape</td><td>No Crítico</td><td>Fugas en empaquetaduras / Disminuye eficiencia del turbo, pero no causa falla catastrófica inmediata.</td></tr>
+            </table>
+
+            <h3>2. Trabajos y Estimación de Horas-Hombre</h3>
+            <table>
+                <tr><th>Trabajo</th><th>Dotación</th><th>Duración</th><th>HH Totales</th></tr>
+                <tr><td>Cambio de empaquetaduras de escape</td><td>2 Mecánicos</td><td>4.0 h</td><td>8.0 HH</td></tr>
+            </table>
+
+            <h3>3. Herramientas</h3>
+            <ul>
+                <li><strong>Genéricas:</strong> Llaves, cepillo de alambre, dados de impacto.</li>
+                <li><strong>Calibración Vigente:</strong> Torquímetro para asegurar expansión térmica uniforme.</li>
+            </ul>
+
+            <h3>4. Seguridad y Control de Energías Residuales</h3>
+            <ul>
+                <li><strong>Térmica:</strong> Componentes extremadamente calientes. <em>Control:</em> Permiso de trabajo en caliente si se requiere oxicorte para pernos gripados.</li>
+                <li><strong>Gravitacional:</strong> Desmontaje de silenciador pesado. <em>Control:</em> Izaje planificado con tecles.</li>
+            </ul>
+        </div>
+
+        <!-- ================= SISTEMA 6 ================= -->
+        <div id="electrico" class="system-card">
+            <h2>6. Arranque y Carga Eléctrica</h2>
+            <p><strong>Subconjuntos:</strong> Baterías, motor de arranque, alternador de carga, cableado.</p>
+            
+            <div class="img-container">
+                <!-- AQUÍ VA LA FOTO: Reemplaza 'foto-arranque.jpg' -->
+                <img src="foto-arranque.jpg" alt="Arranque y Baterías">
+            </div>
+
+            <h3>1. Criticidad</h3>
+            <table>
+                <tr><th>Subconjunto</th><th>Clasificación</th><th>Justificación</th></tr>
+                <tr><td>Motor de Arranque</td><td><strong>Crítico</strong></td><td>Cortocircuito o falla de bendix / Imposibilidad total de poner el equipo en servicio ante una emergencia.</td></tr>
+                <tr><td>Baterías</td><td><strong>Crítico</strong></td><td>Bajo voltaje / Impide el accionamiento de la ECU y del arranque.</td></tr>
+            </table>
+
+            <h3>2. Trabajos y Estimación de Horas-Hombre</h3>
+            <table>
+                <tr><th>Trabajo</th><th>Dotación</th><th>Duración</th><th>HH Totales</th></tr>
+                <tr><td>Cambio de motor de arranque</td><td>1 Eléctrico + 1 Ayudante</td><td>2.0 h</td><td>4.0 HH</td></tr>
+            </table>
+
+            <h3>3. Herramientas</h3>
+            <ul>
+                <li><strong>Genéricas:</strong> Llaves aisladas, destornilladores.</li>
+                <li><strong>Calibración Vigente:</strong> Multímetro digital, pinza amperimétrica.</li>
+            </ul>
+
+            <h3>4. Seguridad y Control de Energías Residuales</h3>
+            <ul>
+                <li><strong>Eléctrica:</strong> Energía almacenada en bancos de baterías (24V DC de alto amperaje). <em>Control:</em> Desconexión de borne negativo primero. Uso de herramientas con aislación certificada.</li>
+                <li><strong>Química:</strong> Ácido sulfúrico en baterías. <em>Control:</em> Lentes faciales, guantes antiácido, lavaojos cercano.</li>
+            </ul>
+        </div>
+
+        <!-- ================= SISTEMA 7 ================= -->
+        <div id="control" class="system-card">
+            <h2>7. Control, Protecciones e Instrumentación</h2>
+            <p><strong>Subconjuntos:</strong> Sensores, regulador de velocidad, parada de emergencia, tablero.</p>
+            
+            <div class="img-container">
+                <!-- AQUÍ VA LA FOTO: Reemplaza 'foto-tablero.jpg' -->
+                <img src="foto-tablero.jpg" alt="Panel de Control">
+            </div>
+
+            <h3>1. Criticidad</h3>
+            <table>
+                <tr><th>Subconjunto</th><th>Clasificación</th><th>Justificación</th></tr>
+                <tr><td>Regulador de velocidad (ECU/Actuador)</td><td><strong>Crítico</strong></td><td>Falla de señal / Provoca inestabilidad de Hz o embalamiento del motor.</td></tr>
+                <tr><td>Sensor de Presión de Aceite</td><td><strong>Crítico</strong></td><td>Lectura errónea / Impide la activación de la parada de emergencia en caso real de falla.</td></tr>
+            </table>
+
+            <h3>2. Trabajos y Estimación de Horas-Hombre</h3>
+            <table>
+                <tr><th>Trabajo</th><th>Dotación</th><th>Duración</th><th>HH Totales</th></tr>
+                <tr><td>Reemplazo y calibración de sensores</td><td>1 Instrumentista</td><td>2.0 h</td><td>2.0 HH</td></tr>
+            </table>
+
+            <h3>3. Herramientas</h3>
+            <ul>
+                <li><strong>Genéricas:</strong> Destornilladores de precisión.</li>
+                <li><strong>Calibración Vigente:</strong> Calibrador de lazo (4-20mA), bomba de prueba de presión, multímetro.</li>
+            </ul>
+
+            <h3>4. Seguridad y Control de Energías Residuales</h3>
+            <ul>
+                <li><strong>Eléctrica:</strong> Voltaje en panel de control. <em>Control:</em> Desenergizar panel, uso de pulsera antiestática para proteger placas electrónicas.</li>
+            </ul>
+        </div>
+
+        <!-- ================= SISTEMA 8 ================= -->
+        <div id="alternador" class="system-card">
+            <h2>8. Alternador y Acoplamiento</h2>
+            <p><strong>Subconjuntos:</strong> Alternador, acople elástico, bancada, elementos antivibratorios.</p>
+            
+            <div class="img-container">
+                <!-- AQUÍ VA LA FOTO: Reemplaza 'foto-alternador.jpg' -->
+                <img src="foto-alternador.jpg" alt="Alternador">
+            </div>
+
+            <h3>1. Criticidad</h3>
+            <table>
+                <tr><th>Subconjunto</th><th>Clasificación</th><th>Justificación</th></tr>
+                <tr><td>Acople Elástico</td><td><strong>Crítico</strong></td><td>Ruptura de insertos / Desalineación severa, vibración extrema y daño a rodamientos del alternador.</td></tr>
+                <tr><td>Elementos antivibratorios</td><td>No Crítico</td><td>Fatiga / Transmisión de vibraciones a la bancada, falla gradual.</td></tr>
+            </table>
+
+            <h3>2. Trabajos y Estimación de Horas-Hombre</h3>
+            <table>
+                <tr><th>Trabajo</th><th>Dotación</th><th>Duración</th><th>HH Totales</th></tr>
+                <tr><td>Alineación y revisión de acople elástico</td><td>2 Mecánicos Especialistas</td><td>6.0 h</td><td>12.0 HH</td></tr>
+            </table>
+
+            <h3>3. Herramientas</h3>
+            <ul>
+                <li><strong>Genéricas:</strong> Llaves grandes, gatas hidráulicas.</li>
+                <li><strong>Calibración Vigente:</strong> Alineador láser de ejes, torquímetro de alta capacidad, megger (para medir aislación del alternador).</li>
+            </ul>
+
+            <h3>4. Seguridad y Control de Energías Residuales</h3>
+            <ul>
+                <li><strong>Eléctrica:</strong> Voltaje inducido o carga residual en bobinas del alternador. <em>Control:</em> Puesta a tierra temporal de las fases antes de intervenir.</li>
+                <li><strong>Gravitacional:</strong> Levantamiento del cuerpo del alternador para ajuste de shims. <em>Control:</em> Gatas hidráulicas certificadas y tacos de madera (bloqueo mecánico seguro).</li>
+            </ul>
+        </div>
 
     </div>
+
+    <footer>
+        <p>Desarrollado por el Equipo de Ingeniería Naval (Grupo de Rodrigo) - 2026</p>
+        <p>Laboratorio de Máquinas Marinas | Taller de Especialización II</p>
+    </footer>
+
 </body>
 </html>

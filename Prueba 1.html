@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Mantenimiento - Doosan P126TI-II</title>
+    <style>
+        :root {
+            --primary-color: #0033a0; /* Azul marino tipo Doosan */
+            --secondary-color: #e3000f; /* Rojo de acento */
+            --bg-color: #f4f4f4;
+            --text-color: #333;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 5px solid var(--secondary-color);
+        }
+        header h1 { margin: 0; font-size: 1.8rem; }
+        header p { margin: 5px 0 0 0; font-weight: bold; }
+        
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        table, th, td { border: 1px solid #ddd; }
+        th, td { padding: 12px; text-align: left; }
+        th { background-color: var(--primary-color); color: white; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        
+        .alert-box {
+            background-color: #ffe6e6;
+            border-left: 5px solid var(--secondary-color);
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Grupo Electrógeno Doosan P126TI-II / SDMO D330</h1>
+        <p>Panel de Gestión de Mantenimiento - Grupo 1</p>
+    </header>
+
+    <div class="container">
+        <p><strong>Sistema analizado:</strong> Lubricación (Cárter, bomba de aceite, filtros, enfriador, respiradero, manómetro).</p>
+
+        <section>
+            <h2>1. Criticidad de Subconjuntos</h2>
+            <p>Clasificación basada en el análisis FMECA (Número de Prioridad de Riesgo - NPR).</p>
+            <table>
+                <tr>
+                    <th>Subconjunto</th>
+                    <th>Clasificación</th>
+                    <th>Justificación (Modo de falla / Efecto)</th>
+                </tr>
+                <tr>
+                    <td>Bomba de Aceite</td>
+                    <td><strong>Crítico</strong></td>
+                    <td>Pérdida de presión total; riesgo inminente de fundición de metales del cigüeñal.</td>
+                </tr>
+                <tr>
+                    <td>Enfriador de Aceite</td>
+                    <td><strong>Crítico</strong></td>
+                    <td>Rotura interna; mezcla de agua-aceite degradando la lubricación y recalentando el motor.</td>
+                </tr>
+                <tr>
+                    <td>Respiradero del Cárter</td>
+                    <td>No Crítico</td>
+                    <td>Obstrucción leve; genera sobrepresión paulatina pero no detiene la operación de emergencia.</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>2. Trabajos y Estimación de Horas-Hombre</h2>
+            <table>
+                <tr>
+                    <th>Trabajo de Mantenimiento</th>
+                    <th>Dotación</th>
+                    <th>Duración Tarea</th>
+                    <th>Horas-Hombre (HH) Totales</th>
+                </tr>
+                <tr>
+                    <td>Renovación de aceite y cambio de filtros</td>
+                    <td>1 Mecánico + 1 Ayudante</td>
+                    <td>1.5 horas</td>
+                    <td>3.0 HH</td>
+                </tr>
+                <tr>
+                    <td>Inspección y limpieza del enfriador de aceite</td>
+                    <td>2 Mecánicos</td>
+                    <td>4.0 horas</td>
+                    <td>8.0 HH</td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>3. Herramientas y Equipos Necesarios</h2>
+            <ul>
+                <li><strong>Herramientas Genéricas:</strong> Juego de llaves de corona y dados (métricas), recipientes para recolección de fluidos, paños absorbentes.</li>
+                <li><strong>Herramientas Específicas:</strong> Extractor de filtros de aceite de cinta o cadena.</li>
+                <li><strong>Instrumentos con Calibración Vigente:</strong> Llave dinamométrica (torquímetro) para asegurar el apriete correcto del tapón del cárter y pernos del enfriador.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>4. Seguridad y Control de Energías Residuales</h2>
+            <div class="alert-box">
+                <strong>Paso 0:</strong> Aplicación estricta de protocolo de Bloqueo y Etiquetado (LOTO) en tablero eléctrico y válvulas de partida antes de iniciar.
+            </div>
+            <ul>
+                <li><strong>Energía Térmica:</strong> El aceite y el bloque del motor conservan altas temperaturas tras la detención. <em>Medida:</em> Esperar el tiempo de enfriamiento indicado en manual; uso de guantes térmicos antideslizantes.</li>
+                <li><strong>Energía de Presión:</strong> Presión residual en el circuito tras apagar la bomba. <em>Medida:</em> Abrir lentamente el tapón de llenado o válvulas de purga antes de soltar mangueras.</li>
+                <li><strong>Riesgo Químico y Ambiental:</strong> Contacto con aceite lubricante usado. <em>Medida:</em> Uso de EPP específico (lentes y guantes de nitrilo). Gestión de residuos peligrosos (aceite y filtros impregnados) depositándolos en tambores certificados para cumplir con el <strong>Anexo I del MARPOL</strong> a bordo.</li>
+            </ul>
+        </section>
+
+    </div>
+</body>
+</html>

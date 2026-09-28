@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Mantenimiento - Doosan P126TI-II</title>
+    <title>Gestión de Mantenimiento - Sistema 7: Control e Instrumentación</title>
     <style>
         :root {
             --primary-color: #0033a0;
             --secondary-color: #e3000f;
             --bg-color: #f4f4f9;
             --text-color: #333;
+            --success-color: #28a745;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -25,405 +26,251 @@
             text-align: center;
             padding: 1.5rem 1rem;
             border-bottom: 5px solid var(--secondary-color);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
         }
-        header h1 { margin: 0; font-size: 1.5rem; }
-        nav {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            background-color: #e0e0e0;
-            padding: 10px;
-        }
-        nav a {
-            text-decoration: none;
-            color: var(--primary-color);
-            margin: 5px 10px;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-        nav a:hover { color: var(--secondary-color); }
         .container {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 20px auto;
             padding: 0 15px;
         }
-        .system-card {
+        /* Estilos del Cuestionario */
+        #survey-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border-top: 5px solid var(--secondary-color);
+        }
+        .loto-header {
+            background-color: #ffe6e6;
+            color: #900;
+            padding: 15px;
+            border-left: 5px solid var(--secondary-color);
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+        .question { margin-bottom: 20px; }
+        .question h4 { margin-bottom: 10px; color: var(--primary-color); }
+        .options label { display: block; margin-bottom: 8px; cursor: pointer; }
+        .btn-submit {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .btn-submit:hover { background-color: #002277; }
+        #error-msg {
+            display: none;
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        /* Estilos del Manual (Oculto inicialmente) */
+        #manual-container { display: none; }
+        .section-card {
             background: white;
             padding: 25px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
-        h2 {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 5px;
-            margin-top: 0;
-        }
-        h3 { color: var(--secondary-color); margin-top: 25px; }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 15px 0;
-            font-size: 0.9rem;
-        }
-        table, th, td { border: 1px solid #ccc; }
-        th, td { padding: 10px; text-align: left; }
+        h2 { color: var(--primary-color); border-bottom: 2px solid #ddd; padding-bottom: 5px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.95rem; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
         th { background-color: var(--primary-color); color: white; }
         tr:nth-child(even) { background-color: #f9f9f9; }
-        
-        .alert-box {
-            background-color: #ffe6e6;
-            border-left: 5px solid var(--secondary-color);
-            padding: 10px 15px;
-            margin: 15px 0;
-            font-size: 0.9rem;
-        }
-        .img-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .img-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #333;
-            color: white;
-            margin-top: 40px;
-        }
+        .img-container { text-align: center; margin: 20px 0; background: #eef; padding: 15px; border-radius: 8px;}
+        .img-container img { max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px; }
+        .img-instructions { color: var(--secondary-color); font-size: 0.85rem; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Mantenimiento Doosan P126TI-II / SDMO D330</h1>
+        <h1>Mantenimiento Doosan P126TI-II</h1>
+        <p>Sistema 7: Control, Protecciones e Instrumentación</p>
     </header>
 
-    <!-- Menú de navegación rápida -->
-    <nav>
-        <a href="#combustible">1. Combustible</a>
-        <a href="#lubricacion">2. Lubricación</a>
-        <a href="#refrigeracion">3. Refrigeración</a>
-        <a href="#admision">4. Admisión/Turbo</a>
-        <a href="#escape">5. Escape</a>
-        <a href="#electrico">6. Eléctrico</a>
-        <a href="#control">7. Control</a>
-        <a href="#alternador">8. Alternador</a>
-    </nav>
-
     <div class="container">
-
-        <!-- ================= SISTEMA 1 ================= -->
-        <div id="combustible" class="system-card">
-            <h2>1. Sistema de Combustible</h2>
-            <p><strong>Subconjuntos:</strong> Estanque de servicio, prefiltro separador, filtros, bomba de inyección, inyectores, línea de retorno.</p>
-            
-            <div class="img-container">
-                <!-- AQUÍ VA LA FOTO: Reemplaza 'foto-combustible.jpg' con tu imagen del laboratorio -->
-                <img src="foto-combustible.jpg" alt="Sistema de Combustible Doosan">
-                <p><em>Figura 1: Sistema de combustible y bomba de inyección.</em></p>
+        
+        <!-- ENCUESTA DE SEGURIDAD -->
+        <div id="survey-container">
+            <div class="loto-header">
+                <h3>⚠️ PROTOCOLO DE INGRESO: LOTO Y EPP</h3>
+                <p>La seguridad es intransable. Toda intervención en este equipo debe realizarse estrictamente por 2 personas. Para desbloquear el manual técnico, debe aprobar la verificación de EPP y Procedimiento de Bloqueo (LOTO).</p>
             </div>
-
-            <h3>1. Criticidad</h3>
-            <table>
-                <tr><th>Subconjunto</th><th>Clasificación</th><th>Justificación (Modo de falla / Efecto)</th></tr>
-                <tr><td>Bomba de Inyección</td><td><strong>Crítico</strong></td><td>Desgaste interno / Caída de presión, motor no arranca o pierde potencia severamente.</td></tr>
-                <tr><td>Inyectores</td><td><strong>Crítico</strong></td><td>Tobera obstruida / Mala atomización, genera humo negro y alza de temperatura térmica.</td></tr>
-                <tr><td>Línea de retorno</td><td>No Crítico</td><td>Fisura leve / Fuga menor contenida en bandeja, no detiene la operación inmediatamente.</td></tr>
-            </table>
-
-            <h3>2. Trabajos y Estimación de Horas-Hombre</h3>
-            <table>
-                <tr><th>Trabajo</th><th>Dotación</th><th>Duración</th><th>HH Totales</th></tr>
-                <tr><td>Reemplazo de inyectores y calibración</td><td>1 Mecánico + 1 Ayudante</td><td>3.0 h</td><td>6.0 HH</td></tr>
-                <tr><td>Cambio de filtros y purga del sistema</td><td>1 Mecánico</td><td>1.0 h</td><td>1.0 HH</td></tr>
-            </table>
-
-            <h3>3. Herramientas</h3>
-            <ul>
-                <li><strong>Genéricas:</strong> Llaves combinadas, alicates, bandejas de recolección.</li>
-                <li><strong>Específicas:</strong> Extractor de inyectores, bomba manual de purga.</li>
-                <li><strong>Calibración Vigente:</strong> Torquímetro (para pernos de inyectores), probador de presión de inyectores (Pop Tester).</li>
-            </ul>
-
-            <h3>4. Seguridad y Control de Energías Residuales</h3>
-            <div class="alert-box"><strong>LOTO:</strong> Bloqueo de válvulas desde estanque diario y desconexión de baterías.</div>
-            <ul>
-                <li><strong>Energía de Presión:</strong> Presión residual en líneas de alta presión. <em>Control:</em> Aflojar racores lentamente usando paños para contener atomización. Riesgo de inyección subcutánea.</li>
-                <li><strong>Química / MARPOL:</strong> Derrame de diésel. <em>Control:</em> Uso de bandejas antiderrame (SOPEP). Disposición de trapos según Anexo I del MARPOL.</li>
-            </ul>
+            <form id="quiz-form">
+                <div id="questions-wrapper"></div>
+                <button type="button" class="btn-submit" onclick="checkAnswers()">Verificar y Acceder al Manual</button>
+            </form>
+            <div id="error-msg" onclick="loadQuiz()">No cumple con los requerimientos básicos para realizar la mantención de este equipo. Click aquí para volver a intentarlo.</div>
         </div>
 
-        <!-- ================= SISTEMA 2 ================= -->
-        <div id="lubricacion" class="system-card">
-            <h2>2. Sistema de Lubricación</h2>
-            <p><strong>Subconjuntos:</strong> Cárter, bomba de aceite, filtros, enfriador de aceite, respiradero, manómetro.</p>
+        <!-- MANUAL TÉCNICO -->
+        <div id="manual-container">
             
-            <div class="img-container">
-                <!-- AQUÍ VA LA FOTO: Reemplaza 'foto-lubricacion.jpg' con tu imagen del laboratorio -->
-                <img src="foto-lubricacion.jpg" alt="Sistema de Lubricación Doosan">
-                <p><em>Figura 2: Filtros y enfriador de aceite.</em></p>
+            <div class="section-card">
+                <h2>1. Protocolo Cero: Bloqueo y Etiquetado (LOTO)</h2>
+                <p>Antes de cualquier intervención en el sistema de control, ejecute el siguiente procedimiento obligatorio para aislar las energías residuales[cite: 3]:</p>
+                <ul>
+                    <li><strong>Paso 1:</strong> Apague el controlador APM303 desde el panel frontal[cite: 11].</li>
+                    <li><strong>Paso 2:</strong> Desconecte las baterías de arranque de 24V DC. <strong>Obligatorio:</strong> Desconecte siempre el cable de tierra (negativo) primero para evitar riesgo de cortocircuitos[cite: 2].</li>
+                    <li><strong>Paso 3:</strong> Instale candado y tarjeta LOTO en el cortacorriente de las baterías.</li>
+                    <li><strong>Paso 4:</strong> Verifique "Energía Cero" midiendo con multímetro en los terminales del panel APM303.</li>
+                </ul>
             </div>
 
-            <h3>1. Criticidad</h3>
-            <table>
-                <tr><th>Subconjunto</th><th>Clasificación</th><th>Justificación</th></tr>
-                <tr><td>Bomba de Aceite</td><td><strong>Crítico</strong></td><td>Falla de engranajes / Pérdida de presión total; fundición de metales.</td></tr>
-                <tr><td>Enfriador de Aceite</td><td><strong>Crítico</strong></td><td>Rotura de haz tubular / Mezcla agua-aceite, pérdida de propiedades lubricantes.</td></tr>
-            </table>
-
-            <h3>2. Trabajos y Estimación de Horas-Hombre</h3>
-            <table>
-                <tr><th>Trabajo</th><th>Dotación</th><th>Duración</th><th>HH Totales</th></tr>
-                <tr><td>Renovación de aceite y filtros</td><td>1 Mecánico + 1 Ayudante</td><td>1.5 h</td><td>3.0 HH</td></tr>
-            </table>
-
-            <h3>3. Herramientas</h3>
-            <ul>
-                <li><strong>Genéricas:</strong> Dados, llaves, tambores de recolección.</li>
-                <li><strong>Específicas:</strong> Llave de cinta/cadena para filtros.</li>
-                <li><strong>Calibración Vigente:</strong> Torquímetro para tapón del cárter.</li>
-            </ul>
-
-            <h3>4. Seguridad y Control de Energías Residuales</h3>
-            <div class="alert-box"><strong>LOTO:</strong> Etiquetado en panel de control para evitar arranque intempestivo.</div>
-            <ul>
-                <li><strong>Térmica:</strong> Aceite a alta temperatura tras detención. <em>Control:</em> Esperar enfriamiento según manual, usar guantes térmicos.</li>
-                <li><strong>Gravitacional:</strong> Izaje de tambores de aceite usado. <em>Control:</em> Uso de tecles certificados.</li>
-            </ul>
-        </div>
-
-        <!-- ================= SISTEMA 3 ================= -->
-        <div id="refrigeracion" class="system-card">
-            <h2>3. Sistema de Refrigeración</h2>
-            <p><strong>Subconjuntos:</strong> Radiador, ventilador y correa, bomba de agua, termostato, circuito del aftercooler.</p>
-            
-            <div class="img-container">
-                <!-- AQUÍ VA LA FOTO: Reemplaza 'foto-refrigeracion.jpg' -->
-                <img src="foto-refrigeracion.jpg" alt="Sistema de Refrigeración">
+            <div class="section-card">
+                <h2>2. Criticidad de Subconjuntos (FMECA)</h2>
+                <table>
+                    <tr><th>Subconjunto</th><th>Clasificación</th><th>Justificación y Efectos</th></tr>
+                    <tr><td>Controlador APM303</td><td><strong>Crítico</strong></td><td>Una falla de módulo o pérdida de señal de sensores impide el arranque o detiene el equipo de forma inmediata (Falla crítica)[cite: 11].</td></tr>
+                    <tr><td>Actuador del Gobernador</td><td><strong>Crítico</strong></td><td>Un cortocircuito o atasco genera pérdida del control de velocidad (inestabilidad o sobrevelocidad), requiriendo detención de emergencia[cite: 2].</td></tr>
+                    <tr><td>Sensor de Presión de Aceite</td><td><strong>Crítico</strong></td><td>Si entrega una lectura errónea o falla, el sistema APM303 no detendrá el motor ante una caída real de presión (menor a 1 Bar), provocando daño catastrófico al motor[cite: 11].</td></tr>
+                    <tr><td>Cableado de comunicación</td><td>No Crítico</td><td>Una falla en el puerto RS485 o USB interrumpe el monitoreo remoto, pero el equipo sigue operando y protegiéndose localmente[cite: 11].</td></tr>
+                </table>
             </div>
 
-            <h3>1. Criticidad</h3>
-            <table>
-                <tr><th>Subconjunto</th><th>Clasificación</th><th>Justificación</th></tr>
-                <tr><td>Bomba de Agua</td><td><strong>Crítico</strong></td><td>Falla de rodamiento o sello / Sobrecalentamiento inmediato del bloque.</td></tr>
-                <tr><td>Termostato</td><td><strong>Crítico</strong></td><td>Falla en posición cerrada / Impide el flujo al radiador, gripado de pistones.</td></tr>
-                <tr><td>Correas</td><td>No Crítico</td><td>Desgaste / Puede ser detectado y reemplazado antes del corte total en inspección visual.</td></tr>
-            </table>
-
-            <h3>2. Trabajos y Estimación de Horas-Hombre</h3>
-            <table>
-                <tr><th>Trabajo</th><th>Dotación</th><th>Duración</th><th>HH Totales</th></tr>
-                <tr><td>Cambio de bomba de agua y correas</td><td>2 Mecánicos</td><td>3.0 h</td><td>6.0 HH</td></tr>
-            </table>
-
-            <h3>3. Herramientas</h3>
-            <ul>
-                <li><strong>Genéricas:</strong> Llaves combinadas, destornilladores, recipientes.</li>
-                <li><strong>Calibración Vigente:</strong> Tensiómetro de correas (para evitar sobrecarga radial en los rodamientos).</li>
-            </ul>
-
-            <h3>4. Seguridad y Control de Energías Residuales</h3>
-            <div class="alert-box"><strong>LOTO:</strong> Bloqueo eléctrico del partidor.</div>
-            <ul>
-                <li><strong>Presión y Térmica:</strong> Circuito presurizado y caliente. <em>Control:</em> Nunca abrir la tapa del radiador en caliente. Despresurizar lentamente.</li>
-                <li><strong>Química:</strong> Anticongelante/Refrigerante (Tóxico). <em>Control:</em> Lentes de seguridad, recolección hermética para disposición final.</li>
-            </ul>
-        </div>
-
-        <!-- ================= SISTEMA 4 ================= -->
-        <div id="admision" class="system-card">
-            <h2>4. Admisión y Sobrealimentación</h2>
-            <p><strong>Subconjuntos:</strong> Filtro de aire, turbocompresor, aftercooler, colector de admisión.</p>
-            
             <div class="img-container">
-                <!-- AQUÍ VA LA FOTO: Reemplaza 'foto-turbo.jpg' -->
-                <img src="foto-turbo.jpg" alt="Turbo y Admisión">
+                <!-- INSTRUCCIÓN DE IMAGEN 1: Extraer del manual APM303 -->
+                <p class="img-instructions">📸 INSTRUCCIÓN PARA EL ALUMNO: Recorta la "Figure 2 - front panel of the APM303" de la página 5 del archivo 'cec9bc 2.pdf', guárdala como 'apm303.png' en tu carpeta de GitHub y elimina este texto rojo.</p>
+                <img src="apm303.png" alt="Panel Frontal Controlador APM303">
+                <p><em>Figura 1: Interfaz del Controlador APM303.</em></p>
             </div>
 
-            <h3>1. Criticidad</h3>
-            <table>
-                <tr><th>Subconjunto</th><th>Clasificación</th><th>Justificación</th></tr>
-                <tr><td>Turbocompresor</td><td><strong>Crítico</strong></td><td>Falla de cojinetes / Ingreso de aceite a la admisión (riesgo de embalamiento u "over-speed").</td></tr>
-                <tr><td>Filtro de aire</td><td>No Crítico</td><td>Saturación / Pérdida paulatina de potencia, medible con indicador de restricción.</td></tr>
-            </table>
-
-            <h3>2. Trabajos y Estimación de Horas-Hombre</h3>
-            <table>
-                <tr><th>Trabajo</th><th>Dotación</th><th>Duración</th><th>HH Totales</th></tr>
-                <tr><td>Overhaul a turbocompresor</td><td>1 Mecánico Especialista + 1 Ayud.</td><td>8.0 h</td><td>16.0 HH</td></tr>
-            </table>
-
-            <h3>3. Herramientas</h3>
-            <ul>
-                <li><strong>Genéricas:</strong> Llaves Allen, dados.</li>
-                <li><strong>Específicas:</strong> Extractor de rodamientos de turbina.</li>
-                <li><strong>Calibración Vigente:</strong> Reloj comparador (Dial gauge) para medir juego axial/radial del eje del turbo, Torquímetro.</li>
-            </ul>
-
-            <h3>4. Seguridad y Control de Energías Residuales</h3>
-            <ul>
-                <li><strong>Rotacional (Inercia):</strong> El eje del turbo sigue girando a altas RPM tras detener el motor. <em>Control:</em> Esperar cese total de rotación escuchando la carcasa.</li>
-                <li><strong>Térmica:</strong> Carcasa de escape del turbo a más de 400°C. <em>Control:</em> Uso de guantes para alta temperatura, esperar enfriamiento.</li>
-            </ul>
-        </div>
-
-        <!-- ================= SISTEMA 5 ================= -->
-        <div id="escape" class="system-card">
-            <h2>5. Sistema de Escape</h2>
-            <p><strong>Subconjuntos:</strong> Colector de escape, turbina, silenciador, conducto de salida.</p>
-            
-            <div class="img-container">
-                <!-- AQUÍ VA LA FOTO: Reemplaza 'foto-escape.jpg' -->
-                <img src="foto-escape.jpg" alt="Sistema de Escape">
+            <div class="section-card">
+                <h2>3. Trabajos y Estimación de Horas-Hombre</h2>
+                <table>
+                    <tr><th>Tarea de Mantenimiento</th><th>Dotación Mínima</th><th>Duración</th><th>Horas-Hombre (HH) Totales</th></tr>
+                    <tr><td>Inspección de actuador del gobernador, limpieza de panel APM303 y verificación de sensores de presión/temperatura.</td><td>1 Eléctrico/Instrumentista + 1 Mecánico[cite: 3]</td><td>2.0 horas</td><td>4.0 HH</td></tr>
+                </table>
             </div>
 
-            <h3>1. Criticidad</h3>
-            <table>
-                <tr><th>Subconjunto</th><th>Clasificación</th><th>Justificación</th></tr>
-                <tr><td>Colector de Escape</td><td>No Crítico</td><td>Fugas en empaquetaduras / Disminuye eficiencia del turbo, pero no causa falla catastrófica inmediata.</td></tr>
-            </table>
-
-            <h3>2. Trabajos y Estimación de Horas-Hombre</h3>
-            <table>
-                <tr><th>Trabajo</th><th>Dotación</th><th>Duración</th><th>HH Totales</th></tr>
-                <tr><td>Cambio de empaquetaduras de escape</td><td>2 Mecánicos</td><td>4.0 h</td><td>8.0 HH</td></tr>
-            </table>
-
-            <h3>3. Herramientas</h3>
-            <ul>
-                <li><strong>Genéricas:</strong> Llaves, cepillo de alambre, dados de impacto.</li>
-                <li><strong>Calibración Vigente:</strong> Torquímetro para asegurar expansión térmica uniforme.</li>
-            </ul>
-
-            <h3>4. Seguridad y Control de Energías Residuales</h3>
-            <ul>
-                <li><strong>Térmica:</strong> Componentes extremadamente calientes. <em>Control:</em> Permiso de trabajo en caliente si se requiere oxicorte para pernos gripados.</li>
-                <li><strong>Gravitacional:</strong> Desmontaje de silenciador pesado. <em>Control:</em> Izaje planificado con tecles.</li>
-            </ul>
-        </div>
-
-        <!-- ================= SISTEMA 6 ================= -->
-        <div id="electrico" class="system-card">
-            <h2>6. Arranque y Carga Eléctrica</h2>
-            <p><strong>Subconjuntos:</strong> Baterías, motor de arranque, alternador de carga, cableado.</p>
-            
-            <div class="img-container">
-                <!-- AQUÍ VA LA FOTO: Reemplaza 'foto-arranque.jpg' -->
-                <img src="foto-arranque.jpg" alt="Arranque y Baterías">
+            <div class="section-card">
+                <h2>4. Herramientas y Equipos Específicos</h2>
+                <p>El uso de herramientas inadecuadas en instrumentación puede generar daños permanentes por estática o cortocircuito. Asegure la siguiente disposición:</p>
+                <ul>
+                    <li><strong>Herramientas con Aislación Certificada:</strong> Destornilladores de precisión (planos y cruz) aislados a 1000V para bornes del panel[cite: 3].</li>
+                    <li><strong>Protección ESD:</strong> Pulsera antiestática obligatoria al manipular o reemplazar el controlador APM303[cite: 11].</li>
+                    <li><strong>Instrumentos de Medición (Calibración Vigente):</strong> Multímetro digital True RMS (para leer resistencia de sensores y voltaje de baterías) y calibrador de lazo.</li>
+                    <li><strong>Torquímetro Calibrado:</strong> Para la reinstalación de sensores en el bloque del motor. Según las tablas de ingeniería estándar, los hilos de sensores (Ej. M14x1.5) deben ajustarse utilizando un torque de 4.1 a 4.3 kg.m para evitar fracturar la rosca o generar fugas[cite: 2].</li>
+                </ul>
             </div>
 
-            <h3>1. Criticidad</h3>
-            <table>
-                <tr><th>Subconjunto</th><th>Clasificación</th><th>Justificación</th></tr>
-                <tr><td>Motor de Arranque</td><td><strong>Crítico</strong></td><td>Cortocircuito o falla de bendix / Imposibilidad total de poner el equipo en servicio ante una emergencia.</td></tr>
-                <tr><td>Baterías</td><td><strong>Crítico</strong></td><td>Bajo voltaje / Impide el accionamiento de la ECU y del arranque.</td></tr>
-            </table>
-
-            <h3>2. Trabajos y Estimación de Horas-Hombre</h3>
-            <table>
-                <tr><th>Trabajo</th><th>Dotación</th><th>Duración</th><th>HH Totales</th></tr>
-                <tr><td>Cambio de motor de arranque</td><td>1 Eléctrico + 1 Ayudante</td><td>2.0 h</td><td>4.0 HH</td></tr>
-            </table>
-
-            <h3>3. Herramientas</h3>
-            <ul>
-                <li><strong>Genéricas:</strong> Llaves aisladas, destornilladores.</li>
-                <li><strong>Calibración Vigente:</strong> Multímetro digital, pinza amperimétrica.</li>
-            </ul>
-
-            <h3>4. Seguridad y Control de Energías Residuales</h3>
-            <ul>
-                <li><strong>Eléctrica:</strong> Energía almacenada en bancos de baterías (24V DC de alto amperaje). <em>Control:</em> Desconexión de borne negativo primero. Uso de herramientas con aislación certificada.</li>
-                <li><strong>Química:</strong> Ácido sulfúrico en baterías. <em>Control:</em> Lentes faciales, guantes antiácido, lavaojos cercano.</li>
-            </ul>
-        </div>
-
-        <!-- ================= SISTEMA 7 ================= -->
-        <div id="control" class="system-card">
-            <h2>7. Control, Protecciones e Instrumentación</h2>
-            <p><strong>Subconjuntos:</strong> Sensores, regulador de velocidad, parada de emergencia, tablero.</p>
-            
             <div class="img-container">
-                <!-- AQUÍ VA LA FOTO: Reemplaza 'foto-tablero.jpg' -->
-                <img src="foto-tablero.jpg" alt="Panel de Control">
+                <!-- INSTRUCCIÓN DE IMAGEN 2: Extraer del catálogo de partes -->
+                <p class="img-instructions">📸 INSTRUCCIÓN PARA EL ALUMNO: Recorta la "Fig. 1160 ENGINE CONTROL (2)" de la página 160 del archivo '509833079-P126TI-DE12T-PARTBOOK.pdf', guárdala como 'gobernador.png' y elimina este texto rojo.</p>
+                <img src="gobernador.png" alt="Sistema de Control del Motor y Actuador">
+                <p><em>Figura 2: Despiece del control del motor y actuador del gobernador.</em></p>
             </div>
 
-            <h3>1. Criticidad</h3>
-            <table>
-                <tr><th>Subconjunto</th><th>Clasificación</th><th>Justificación</th></tr>
-                <tr><td>Regulador de velocidad (ECU/Actuador)</td><td><strong>Crítico</strong></td><td>Falla de señal / Provoca inestabilidad de Hz o embalamiento del motor.</td></tr>
-                <tr><td>Sensor de Presión de Aceite</td><td><strong>Crítico</strong></td><td>Lectura errónea / Impide la activación de la parada de emergencia en caso real de falla.</td></tr>
-            </table>
-
-            <h3>2. Trabajos y Estimación de Horas-Hombre</h3>
-            <table>
-                <tr><th>Trabajo</th><th>Dotación</th><th>Duración</th><th>HH Totales</th></tr>
-                <tr><td>Reemplazo y calibración de sensores</td><td>1 Instrumentista</td><td>2.0 h</td><td>2.0 HH</td></tr>
-            </table>
-
-            <h3>3. Herramientas</h3>
-            <ul>
-                <li><strong>Genéricas:</strong> Destornilladores de precisión.</li>
-                <li><strong>Calibración Vigente:</strong> Calibrador de lazo (4-20mA), bomba de prueba de presión, multímetro.</li>
-            </ul>
-
-            <h3>4. Seguridad y Control de Energías Residuales</h3>
-            <ul>
-                <li><strong>Eléctrica:</strong> Voltaje en panel de control. <em>Control:</em> Desenergizar panel, uso de pulsera antiestática para proteger placas electrónicas.</li>
-            </ul>
-        </div>
-
-        <!-- ================= SISTEMA 8 ================= -->
-        <div id="alternador" class="system-card">
-            <h2>8. Alternador y Acoplamiento</h2>
-            <p><strong>Subconjuntos:</strong> Alternador, acople elástico, bancada, elementos antivibratorios.</p>
-            
-            <div class="img-container">
-                <!-- AQUÍ VA LA FOTO: Reemplaza 'foto-alternador.jpg' -->
-                <img src="foto-alternador.jpg" alt="Alternador">
+            <div class="section-card">
+                <h2>5. Procedimiento de Mantenimiento Paso a Paso</h2>
+                <ol>
+                    <li><strong>Verificación inicial:</strong> Confirmar que el equipo no tenga alarmas activas en la pantalla del APM303 (El LED "ALARM!" no debe estar parpadeando)[cite: 11]. Proceder con el protocolo LOTO indicado en la sección 1.</li>
+                    <li><strong>Revisión del Panel APM303:</strong> Abrir el gabinete de control. Utilizar pulsera antiestática[cite: 11]. Reapretar los conectores K1 (alimentación) y K6 (medición de voltaje) utilizando destornilladores aislados[cite: 11].</li>
+                    <li><strong>Mantenimiento del Gobernador:</strong> Inspeccionar visualmente el varillaje mecánico del actuador (Figura 2). Debe estar libre de corrosión y moverse sin resistencia física. Revisar el cableado del sensor de velocidad magnético (pickup) asegurando que no existan cortes[cite: 2].</li>
+                    <li><strong>Inspección de Sensores:</strong> Ubicar los sensores de presión de aceite y temperatura de refrigerante en el bloque. Verificar integridad de los conectores. Si un sensor muestra filtración, extraer y reemplazar utilizando el torquímetro al valor especificado (4.1 a 4.3 kg.m para hilos M14)[cite: 2].</li>
+                    <li><strong>Restablecimiento:</strong> Reconectar el terminal negativo de la batería[cite: 2]. Retirar tarjeta LOTO. Encender el panel APM303. Ingresar al menú de parámetros mecánicos (Pantalla 4) para verificar lectura de voltaje de batería (debe ser aprox. 24V)[cite: 11].</li>
+                </ol>
             </div>
 
-            <h3>1. Criticidad</h3>
-            <table>
-                <tr><th>Subconjunto</th><th>Clasificación</th><th>Justificación</th></tr>
-                <tr><td>Acople Elástico</td><td><strong>Crítico</strong></td><td>Ruptura de insertos / Desalineación severa, vibración extrema y daño a rodamientos del alternador.</td></tr>
-                <tr><td>Elementos antivibratorios</td><td>No Crítico</td><td>Fatiga / Transmisión de vibraciones a la bancada, falla gradual.</td></tr>
-            </table>
+            <div class="img-container">
+                <!-- INSTRUCCIÓN DE IMAGEN 3: Extraer del catálogo de partes -->
+                <p class="img-instructions">📸 INSTRUCCIÓN PARA EL ALUMNO: Recorta la porción de los sensores de la "Fig. 2740 SWITCH & SENSOR (1)" de la página 184 del archivo '509833079-P126TI-DE12T-PARTBOOK.pdf', guárdala como 'sensores.png' y elimina este texto rojo.</p>
+                <img src="sensores.png" alt="Sensores de Motor Doosan">
+                <p><em>Figura 3: Disposición de los sensores de temperatura y presión en el motor.</em></p>
+            </div>
 
-            <h3>2. Trabajos y Estimación de Horas-Hombre</h3>
-            <table>
-                <tr><th>Trabajo</th><th>Dotación</th><th>Duración</th><th>HH Totales</th></tr>
-                <tr><td>Alineación y revisión de acople elástico</td><td>2 Mecánicos Especialistas</td><td>6.0 h</td><td>12.0 HH</td></tr>
-            </table>
-
-            <h3>3. Herramientas</h3>
-            <ul>
-                <li><strong>Genéricas:</strong> Llaves grandes, gatas hidráulicas.</li>
-                <li><strong>Calibración Vigente:</strong> Alineador láser de ejes, torquímetro de alta capacidad, megger (para medir aislación del alternador).</li>
-            </ul>
-
-            <h3>4. Seguridad y Control de Energías Residuales</h3>
-            <ul>
-                <li><strong>Eléctrica:</strong> Voltaje inducido o carga residual en bobinas del alternador. <em>Control:</em> Puesta a tierra temporal de las fases antes de intervenir.</li>
-                <li><strong>Gravitacional:</strong> Levantamiento del cuerpo del alternador para ajuste de shims. <em>Control:</em> Gatas hidráulicas certificadas y tacos de madera (bloqueo mecánico seguro).</li>
-            </ul>
         </div>
-
     </div>
 
-    <footer>
-        <p>Desarrollado por el Equipo de Ingeniería Naval (Grupo de Rodrigo) - 2026</p>
-        <p>Laboratorio de Máquinas Marinas | Taller de Especialización II</p>
-    </footer>
+    <script>
+        // Banco de 10 preguntas básicas sobre LOTO y EPP
+        const allQuestions = [
+            { q: "¿Cuántas personas como mínimo deben ejecutar esta mantención según el protocolo?", options: ["1 persona", "2 personas", "3 personas"], ans: 1 },
+            { q: "Antes de abrir el panel APM303, ¿cuál es el primer paso obligatorio?", options: ["Desconectar los sensores", "Llamar al supervisor", "Aplicar procedimiento LOTO"], ans: 2 },
+            { q: "Al aplicar LOTO en las baterías de 24V, ¿qué cable se debe desconectar primero para evitar cortocircuitos?", options: ["El cable positivo", "El cable de tierra (negativo)", "Cualquiera de los dos"], ans: 1 },
+            { q: "¿Qué característica de seguridad deben cumplir sus zapatos para intervenir el tablero de control?", options: ["Ser dieléctricos", "Tener suela de goma común", "Ser impermeables"], ans: 0 },
+            { q: "¿Qué EPP debe utilizar en sus manos al manipular placas electrónicas dentro del panel APM303?", options: ["Guantes de cabritilla", "Pulsera o guantes antiestáticos (ESD)", "Guantes de soldador"], ans: 1 },
+            { q: "Al intervenir sensores cerca del bloque inmediatamente después de que el motor se detiene, ¿qué EPP es vital?", options: ["Guantes quirúrgicos", "Guantes térmicos", "Cinta aislante en los dedos"], ans: 1 },
+            { q: "Tras colocar su candado LOTO, ¿cómo comprueba que el equipo es seguro para intervenir (Energía Cero)?", options: ["Midiendo con un multímetro", "Apretando el botón de encendido", "Confiando en la etiqueta"], ans: 0 },
+            { q: "¿Qué característica deben tener sus destornilladores y pinzas para trabajar en los bornes del equipo?", options: ["Punta imantada", "Aislación eléctrica certificada", "Ser de acero inoxidable puro"], ans: 1 },
+            { q: "Al revisar líneas o sensores que contienen fluidos a presión, ¿qué EPP protege su rostro?", options: ["Lentes de seguridad o pantalla facial", "Mascarilla N95", "Casco de seguridad estándar"], ans: 0 },
+            { q: "Si detecta un cable pelado energizado que no está en la pauta de trabajo, ¿qué debe hacer?", options: ["Aislarlo con huincha y seguir", "Detenerse, aislar el área y avisar al supervisor", "Ignorarlo para cumplir con el tiempo"], ans: 1 }
+        ];
 
+        let currentQuestions = [];
+
+        function shuffle(array) {
+            return array.sort(() => Math.random() - 0.5);
+        }
+
+        function loadQuiz() {
+            document.getElementById('error-msg').style.display = 'none';
+            const wrapper = document.getElementById('questions-wrapper');
+            wrapper.innerHTML = '';
+            
+            // Seleccionar 5 preguntas al azar
+            currentQuestions = shuffle([...allQuestions]).slice(0, 5);
+            
+            currentQuestions.forEach((item, index) => {
+                let html = `<div class="question">
+                    <h4>Pregunta ${index + 1}: ${item.q}</h4>
+                    <div class="options">`;
+                
+                item.options.forEach((opt, i) => {
+                    html += `<label><input type="radio" name="q${index}" value="${i}"> ${opt}</label>`;
+                });
+                
+                html += `</div></div>`;
+                wrapper.innerHTML += html;
+            });
+        }
+
+        function checkAnswers() {
+            let score = 0;
+            let answeredAll = true;
+
+            for (let i = 0; i < 5; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+                if (!selected) {
+                    answeredAll = false;
+                    break;
+                }
+                if (parseInt(selected.value) === currentQuestions[i].ans) {
+                    score++;
+                }
+            }
+
+            if (!answeredAll) {
+                alert("Por favor, responda todas las preguntas antes de verificar.");
+                return;
+            }
+
+            if (score === 5) {
+                // Éxito: Ocultar encuesta y mostrar manual
+                document.getElementById('survey-container').style.display = 'none';
+                document.getElementById('manual-container').style.display = 'block';
+                window.scrollTo(0, 0);
+            } else {
+                // Fallo: Mostrar mensaje de error
+                document.getElementById('error-msg').style.display = 'block';
+                window.scrollTo(0, document.body.scrollHeight);
+            }
+        }
+
+        // Iniciar cuestionario al cargar la página
+        window.onload = loadQuiz;
+    </script>
 </body>
 </html>

@@ -2,211 +2,464 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Mantenimiento - Sistema 7: Control e Instrumentación</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gestión de Mantenimiento - Doosan P126TI-II</title>
     <style>
         :root {
             --primary-color: #0033a0;
             --secondary-color: #e3000f;
-            --bg-color: #f4f4f9;
+            --bg-color: #f0f2f5;
             --text-color: #333;
             --success-color: #28a745;
+            --card-bg: #ffffff;
         }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            line-height: 1.8;
+            font-size: 16px;
         }
+
         header {
             background-color: var(--primary-color);
             color: white;
             text-align: center;
             padding: 1.5rem 1rem;
             border-bottom: 5px solid var(--secondary-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
+
+        header h1 { 
+            margin: 0; 
+            font-size: 1.6rem; 
+            letter-spacing: 1px;
+        }
+
         .container {
             max-width: 900px;
-            margin: 20px auto;
+            margin: 30px auto;
             padding: 0 15px;
         }
-        /* Estilos del Cuestionario */
+
+        /* ----- ESTILOS DEL CUESTIONARIO ----- */
         #survey-container {
-            background: white;
+            background: var(--card-bg);
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
             border-top: 5px solid var(--secondary-color);
         }
+
         .loto-header {
-            background-color: #ffe6e6;
-            color: #900;
-            padding: 15px;
-            border-left: 5px solid var(--secondary-color);
-            margin-bottom: 25px;
-            font-weight: bold;
+            background-color: #fff0f0;
+            color: #b30000;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 6px solid var(--secondary-color);
+            margin-bottom: 30px;
         }
-        .question { margin-bottom: 20px; }
-        .question h4 { margin-bottom: 10px; color: var(--primary-color); }
-        .options label { display: block; margin-bottom: 8px; cursor: pointer; }
+
+        .loto-header h3 { margin-top: 0; display: flex; align-items: center; gap: 10px;}
+
+        .question { 
+            margin-bottom: 25px; 
+            padding: 15px;
+            background-color: #f9fafb;
+            border-radius: 8px;
+            border: 1px solid #e1e4e8;
+        }
+
+        .question h4 { 
+            margin-top: 0;
+            margin-bottom: 15px; 
+            color: var(--primary-color); 
+            font-size: 1.1rem;
+        }
+
+        .options label { 
+            display: block; 
+            margin-bottom: 12px; 
+            cursor: pointer; 
+            padding: 10px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .options label:hover {
+            background: #eef2fa;
+            border-color: var(--primary-color);
+        }
+
+        .options input {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+
         .btn-submit {
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 12px 25px;
-            font-size: 1rem;
-            border-radius: 5px;
+            padding: 16px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
             cursor: pointer;
             width: 100%;
-            margin-top: 20px;
+            margin-top: 15px;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 12px rgba(0, 51, 160, 0.3);
         }
-        .btn-submit:hover { background-color: #002277; }
+
+        .btn-submit:hover { 
+            background-color: #002277; 
+            transform: translateY(-2px);
+        }
+
         #error-msg {
             display: none;
             background-color: var(--secondary-color);
             color: white;
             text-align: center;
             padding: 15px;
-            border-radius: 5px;
-            margin-top: 20px;
+            border-radius: 8px;
+            margin-top: 25px;
             cursor: pointer;
             font-weight: bold;
+            box-shadow: 0 4px 10px rgba(227, 0, 15, 0.3);
         }
-        /* Estilos del Manual (Oculto inicialmente) */
+
+        /* ----- ESTILOS DEL MANUAL ----- */
         #manual-container { display: none; }
+
         .section-card {
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 35px;
         }
-        h2 { color: var(--primary-color); border-bottom: 2px solid #ddd; padding-bottom: 5px; }
-        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.95rem; }
-        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
-        th { background-color: var(--primary-color); color: white; }
-        tr:nth-child(even) { background-color: #f9f9f9; }
-        .img-container { text-align: center; margin: 20px 0; background: #eef; padding: 15px; border-radius: 8px;}
-        .img-container img { max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 5px; }
-        .img-instructions { color: var(--secondary-color); font-size: 0.85rem; font-weight: bold; }
+
+        h2 { 
+            color: var(--primary-color); 
+            border-bottom: 3px solid #e1e4e8; 
+            padding-bottom: 10px; 
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Tablas responsivas */
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            min-width: 600px; /* Asegura scroll en móviles */
+        }
+        
+        th, td { 
+            border: 1px solid #e1e4e8; 
+            padding: 15px; 
+            text-align: left; 
+        }
+        
+        th { 
+            background-color: var(--primary-color); 
+            color: white; 
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) { background-color: #f8f9fa; }
+
+        /* Contenedores de Imágenes Dinámicos */
+        .img-placeholder {
+            background-color: #eef2fa;
+            border: 2px dashed var(--primary-color);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin: 25px 0;
+            transition: transform 0.3s;
+        }
+
+        .img-placeholder:hover {
+            transform: scale(1.02);
+        }
+
+        .img-placeholder img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .img-instruction {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            background: white;
+            padding: 10px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        /* Paso a paso profesional */
+        .step-block {
+            background: #fdfdfd;
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .step-block h3 {
+            margin-top: 0;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+        }
+
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+
+        /* Checklist Interactivo (Re-comisionamiento) */
+        .checklist-container {
+            background-color: #f0f7f4;
+            border: 1px solid #c3e6cb;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border: 1px solid #d6d8db;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .check-item:hover { background-color: #e9ecef; }
+
+        .check-item input[type="checkbox"] {
+            margin-top: 5px;
+            margin-right: 15px;
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+        }
+
+        /* ----- MEDIA QUERIES (Smartphone) ----- */
+        @media (max-width: 768px) {
+            body { font-size: 15px; }
+            .container { margin: 15px auto; padding: 0 10px; }
+            .section-card { padding: 20px 15px; }
+            .btn-submit { padding: 18px 20px; font-size: 1.2rem; }
+            .options label { padding: 15px; } /* Área táctil más grande */
+            .check-item { padding: 15px 10px; }
+        }
     </style>
 </head>
 <body>
 
     <header>
         <h1>Mantenimiento Doosan P126TI-II</h1>
-        <p>Sistema 7: Control, Protecciones e Instrumentación</p>
     </header>
 
     <div class="container">
         
-        <!-- ENCUESTA DE SEGURIDAD -->
+        <!-- ================= ENCUESTA DE SEGURIDAD ================= -->
         <div id="survey-container">
             <div class="loto-header">
-                <h3>⚠️ PROTOCOLO DE INGRESO: LOTO Y EPP</h3>
-                <p>La seguridad es intransable. Toda intervención en este equipo debe realizarse estrictamente por 2 personas. Para desbloquear el manual técnico, debe aprobar la verificación de EPP y Procedimiento de Bloqueo (LOTO).</p>
+                <h3>🛑 BARRERA DE SEGURIDAD OBLIGATORIA</h3>
+                <p>Para desbloquear los manuales técnicos, el operador responsable debe aprobar la validación de EPP y Procedimientos de Energía Cero. Toda intervención requiere estrictamente una dotación de <strong>2 personas</strong>.</p>
             </div>
             <form id="quiz-form">
                 <div id="questions-wrapper"></div>
-                <button type="button" class="btn-submit" onclick="checkAnswers()">Verificar y Acceder al Manual</button>
+                <button type="button" class="btn-submit" onclick="checkAnswers()">Firmar PTS y Acceder al Manual</button>
             </form>
-            <div id="error-msg" onclick="loadQuiz()">No cumple con los requerimientos básicos para realizar la mantención de este equipo. Click aquí para volver a intentarlo.</div>
+            <div id="error-msg" onclick="loadQuiz()">⚠️ No cumple con los requerimientos básicos de seguridad. Haga clic aquí para repasar el protocolo y volver a intentarlo.</div>
         </div>
 
-        <!-- MANUAL TÉCNICO -->
+        <!-- ================= MANUAL TÉCNICO ================= -->
         <div id="manual-container">
             
+            <!-- Criticidad -->
             <div class="section-card">
-                <h2>1. Protocolo Cero: Bloqueo y Etiquetado (LOTO)</h2>
-                <p>Antes de cualquier intervención en el sistema de control, ejecute el siguiente procedimiento obligatorio para aislar las energías residuales[cite: 3]:</p>
+                <h2>📊 1. Criticidad de Subconjuntos (FMECA)</h2>
+                <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th>Subconjunto</th>
+                            <th>Clasificación</th>
+                            <th>Modo de Falla / Efecto Global</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Controlador APM303</strong></td>
+                            <td><span style="color:var(--secondary-color); font-weight:bold;">Crítico</span></td>
+                            <td>Pérdida de comunicación de placa base. Resulta en imposibilidad de arranque o detención intempestiva del grupo electrógeno, dejando la red sin respaldo.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gobernador / Actuador</strong></td>
+                            <td><span style="color:var(--secondary-color); font-weight:bold;">Crítico</span></td>
+                            <td>Atasco mecánico o falla magnética del Pickup. Genera inestabilidad severa de frecuencia (Hz) o sobrerrégimen (Overspeed), requiriendo corte de emergencia.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sensores de Presión/Temp.</strong></td>
+                            <td><span style="color:var(--secondary-color); font-weight:bold;">Crítico</span></td>
+                            <td>Falsa lectura (Resistencia fuera de rango). Impide la activación del sistema de protección automática, arriesgando daño catastrófico al motor.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Herramientas -->
+            <div class="section-card">
+                <h2>🛠️ 2. Herramientas y Equipos Específicos</h2>
+                <p>El trabajo en instrumentación requiere herramientas precisas para evitar cortocircuitos o falsos aprietes:</p>
                 <ul>
-                    <li><strong>Paso 1:</strong> Apague el controlador APM303 desde el panel frontal[cite: 11].</li>
-                    <li><strong>Paso 2:</strong> Desconecte las baterías de arranque de 24V DC. <strong>Obligatorio:</strong> Desconecte siempre el cable de tierra (negativo) primero para evitar riesgo de cortocircuitos[cite: 2].</li>
-                    <li><strong>Paso 3:</strong> Instale candado y tarjeta LOTO en el cortacorriente de las baterías.</li>
-                    <li><strong>Paso 4:</strong> Verifique "Energía Cero" midiendo con multímetro en los terminales del panel APM303.</li>
+                    <li><strong>Instrumentos de Diagnóstico:</strong> Multímetro digital True-RMS (calibración vigente), calibrador de lazos de corriente (4-20mA).</li>
+                    <li><strong>Herramientas Aisladas:</strong> Juego de destornilladores de precisión dieléctricos (1000V) para borneras K1 y K6 del APM303.</li>
+                    <li><strong>Protección Electrónica:</strong> Pulsera o guantes antiestáticos (ESD) para manipulación de placas de control.</li>
+                    <li><strong>Apriete de Precisión:</strong> Torquímetro de rango bajo. Los sensores del bloque requieren un apriete exacto para asentar la arandela de cobre sin fisurar la rosca del block.</li>
+                    <li><strong>Galgas de Espesores (Feeler Gauge):</strong> Obligatorias para calibrar la distancia del sensor de velocidad magnético.</li>
                 </ul>
             </div>
 
+            <!-- Imagen 1 -->
+            <div class="img-placeholder">
+                <div class="img-instruction">📷 Reemplaza 'foto_panel.jpg' con una imagen del controlador APM303</div>
+                <img src="foto_panel.jpg" alt="Panel Controlador APM303">
+                <p><em>Figura 1: Vista general del controlador y borneras traseras.</em></p>
+            </div>
+
+            <!-- Procedimiento Profesional -->
             <div class="section-card">
-                <h2>2. Criticidad de Subconjuntos (FMECA)</h2>
-                <table>
-                    <tr><th>Subconjunto</th><th>Clasificación</th><th>Justificación y Efectos</th></tr>
-                    <tr><td>Controlador APM303</td><td><strong>Crítico</strong></td><td>Una falla de módulo o pérdida de señal de sensores impide el arranque o detiene el equipo de forma inmediata (Falla crítica)[cite: 11].</td></tr>
-                    <tr><td>Actuador del Gobernador</td><td><strong>Crítico</strong></td><td>Un cortocircuito o atasco genera pérdida del control de velocidad (inestabilidad o sobrevelocidad), requiriendo detención de emergencia[cite: 2].</td></tr>
-                    <tr><td>Sensor de Presión de Aceite</td><td><strong>Crítico</strong></td><td>Si entrega una lectura errónea o falla, el sistema APM303 no detendrá el motor ante una caída real de presión (menor a 1 Bar), provocando daño catastrófico al motor[cite: 11].</td></tr>
-                    <tr><td>Cableado de comunicación</td><td>No Crítico</td><td>Una falla en el puerto RS485 o USB interrumpe el monitoreo remoto, pero el equipo sigue operando y protegiéndose localmente[cite: 11].</td></tr>
-                </table>
+                <h2>⚙️ 3. Procedimiento Específico de Mantenimiento</h2>
+                
+                <div class="step-block">
+                    <h3>Fase 1: Desenergización y Energía Cero</h3>
+                    <p>Desconectar la alimentación principal desde el panel frontal. Dirigirse al banco de baterías (24V DC). <strong>Desconectar obligatoriamente el borne negativo (-) primero</strong> para evitar arcos eléctricos, seguido del positivo (+). Instalar candado LOTO en el cortacorriente. Medir con multímetro en las borneras del panel para confirmar ausencia de voltaje.</p>
+                </div>
+
+                <!-- Imagen 2 -->
+                <div class="img-placeholder">
+                    <div class="img-instruction">📷 Reemplaza 'foto_loto.jpg' con una imagen del corte de baterías o aplicación de LOTO</div>
+                    <img src="foto_loto.jpg" alt="Bloqueo de Baterías">
+                    <p><em>Figura 2: Aislamiento seguro del banco de baterías 24V.</em></p>
+                </div>
+
+                <div class="step-block">
+                    <h3>Fase 2: Mantenimiento Controlador APM303</h3>
+                    <p>Con la pulsera antiestática colocada, abrir la consola central. Inspeccionar visualmente las placas de circuito impreso en busca de puntos de sobrecalentamiento. Retirar los conectores traseros (terminales de voltaje K6 y alimentación K1), aplicar limpiador de contactos dieléctrico de secado rápido. Rearmar asegurando la fijación mecánica de los bornes para evitar vibraciones inducidas por el motor.</p>
+                </div>
+
+                <div class="step-block">
+                    <h3>Fase 3: Gobernador y Calibración de Sensor Magnético (Pickup)</h3>
+                    <p>Inspeccionar el varillaje del actuador en la bomba de inyección; debe tener un recorrido suave y sin juego excesivo. Localizar el <em>Magnetic Speed Sensor</em> en la carcasa de la cercha del volante. <br><br><strong>Calibración Crítica:</strong> Retirar el sensor, limpiar la punta magnética de limaduras metálicas. Reinstalar roscando suavemente hasta que la punta toque la cresta de un diente del volante de inercia. Desde ese punto, retroceder el sensor girándolo hacia afuera exactamente 3/4 de vuelta para lograr el <strong>"Air Gap" especificado de 0.45 mm (0.020 pulgadas)</strong>. Fijar firmemente con la contratuerca.</p>
+                </div>
+
+                <!-- Imagen 3 -->
+                <div class="img-placeholder">
+                    <div class="img-instruction">📷 Reemplaza 'foto_pickup.jpg' con una imagen del sensor magnético o gobernador</div>
+                    <img src="foto_pickup.jpg" alt="Ajuste de Sensor Magnético">
+                    <p><em>Figura 3: Ajuste de la luz (Air gap) del sensor de velocidad.</em></p>
+                </div>
+
+                <div class="step-block">
+                    <h3>Fase 4: Inspección de Sensores de Bloque</h3>
+                    <p>Desconectar los arneses eléctricos de los sensores de presión de aceite y temperatura del refrigerante. Medir resistencia interna con multímetro y comparar con la curva óhmica del fabricante. Si se requiere reemplazo, limpiar meticulosamente la rosca del bloque, aplicar sellador de roscas de teflón líquido (no cinta) e instalar aplicando torque con herramienta calibrada. Limpiar cualquier derrame superficial.</p>
+                </div>
+
+                <!-- Imagen 4 -->
+                <div class="img-placeholder">
+                    <div class="img-instruction">📷 Reemplaza 'foto_sensores.jpg' con una imagen de los sensores en el bloque del motor</div>
+                    <img src="foto_sensores.jpg" alt="Sensores del Motor Doosan">
+                    <p><em>Figura 4: Ubicación de los sensores de medición en el bloque.</em></p>
+                </div>
+
             </div>
 
-            <div class="img-container">
-                <!-- INSTRUCCIÓN DE IMAGEN 1: Extraer del manual APM303 -->
-                <p class="img-instructions">📸 INSTRUCCIÓN PARA EL ALUMNO: Recorta la "Figure 2 - front panel of the APM303" de la página 5 del archivo 'cec9bc 2.pdf', guárdala como 'apm303.png' en tu carpeta de GitHub y elimina este texto rojo.</p>
-                <img src="apm303.png" alt="Panel Frontal Controlador APM303">
-                <p><em>Figura 1: Interfaz del Controlador APM303.</em></p>
-            </div>
-
+            <!-- Checklist Re-comisionamiento -->
             <div class="section-card">
-                <h2>3. Trabajos y Estimación de Horas-Hombre</h2>
-                <table>
-                    <tr><th>Tarea de Mantenimiento</th><th>Dotación Mínima</th><th>Duración</th><th>Horas-Hombre (HH) Totales</th></tr>
-                    <tr><td>Inspección de actuador del gobernador, limpieza de panel APM303 y verificación de sensores de presión/temperatura.</td><td>1 Eléctrico/Instrumentista + 1 Mecánico[cite: 3]</td><td>2.0 horas</td><td>4.0 HH</td></tr>
-                </table>
+                <h2>✅ 4. Checklist de Puesta en Servicio (Re-comisionamiento)</h2>
+                <p>Una vez finalizado el mantenimiento físico, valide estrictamente cada uno de los siguientes pasos para retornar el equipo a servicio seguro.</p>
+                
+                <div class="checklist-container">
+                    <label class="check-item">
+                        <input type="checkbox"> Inspección visual 360° completada; herramientas y trapos retirados del área del motor y tableros.
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox"> Retiro de candados y tarjetas LOTO por el personal autorizado.
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox"> Conexión del banco de baterías 24V. <strong>(Conectar positivo [+] primero, negativo [-] al final)</strong>.
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox"> Inicialización del panel APM303. Pantalla de inicio carga sin fallas de memoria.
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox"> Navegar a "Pantalla 6" (Eventos/Anomalías) del controlador y confirmar ausencia de alarmas activas previas al arranque.
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox"> Ejecutar arranque en modo <strong>MANUAL</strong> (botón verde del panel). Confirmar desenganche correcto del motor de arranque.
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox"> Verificar parámetros de estabilización: Velocidad a 1500 RPM, Frecuencia estable en 50 Hz.
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox"> Monitorear Pantalla 4: Presión de aceite por sobre el rango mínimo operativo (> 3.0 bar).
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox"> Inspección dinámica: Revisar visualmente ausencia de fugas de fluidos en las roscas de los sensores intervenidos con el equipo bajo presión.
+                    </label>
+                    <label class="check-item">
+                        <input type="checkbox"> Pasar el controlador de modo MANUAL a modo <strong>AUTO</strong>. El equipo queda disponible para la red.
+                    </label>
+                </div>
             </div>
 
-            <div class="section-card">
-                <h2>4. Herramientas y Equipos Específicos</h2>
-                <p>El uso de herramientas inadecuadas en instrumentación puede generar daños permanentes por estática o cortocircuito. Asegure la siguiente disposición:</p>
-                <ul>
-                    <li><strong>Herramientas con Aislación Certificada:</strong> Destornilladores de precisión (planos y cruz) aislados a 1000V para bornes del panel[cite: 3].</li>
-                    <li><strong>Protección ESD:</strong> Pulsera antiestática obligatoria al manipular o reemplazar el controlador APM303[cite: 11].</li>
-                    <li><strong>Instrumentos de Medición (Calibración Vigente):</strong> Multímetro digital True RMS (para leer resistencia de sensores y voltaje de baterías) y calibrador de lazo.</li>
-                    <li><strong>Torquímetro Calibrado:</strong> Para la reinstalación de sensores en el bloque del motor. Según las tablas de ingeniería estándar, los hilos de sensores (Ej. M14x1.5) deben ajustarse utilizando un torque de 4.1 a 4.3 kg.m para evitar fracturar la rosca o generar fugas[cite: 2].</li>
-                </ul>
-            </div>
-
-            <div class="img-container">
-                <!-- INSTRUCCIÓN DE IMAGEN 2: Extraer del catálogo de partes -->
-                <p class="img-instructions">📸 INSTRUCCIÓN PARA EL ALUMNO: Recorta la "Fig. 1160 ENGINE CONTROL (2)" de la página 160 del archivo '509833079-P126TI-DE12T-PARTBOOK.pdf', guárdala como 'gobernador.png' y elimina este texto rojo.</p>
-                <img src="gobernador.png" alt="Sistema de Control del Motor y Actuador">
-                <p><em>Figura 2: Despiece del control del motor y actuador del gobernador.</em></p>
-            </div>
-
-            <div class="section-card">
-                <h2>5. Procedimiento de Mantenimiento Paso a Paso</h2>
-                <ol>
-                    <li><strong>Verificación inicial:</strong> Confirmar que el equipo no tenga alarmas activas en la pantalla del APM303 (El LED "ALARM!" no debe estar parpadeando)[cite: 11]. Proceder con el protocolo LOTO indicado en la sección 1.</li>
-                    <li><strong>Revisión del Panel APM303:</strong> Abrir el gabinete de control. Utilizar pulsera antiestática[cite: 11]. Reapretar los conectores K1 (alimentación) y K6 (medición de voltaje) utilizando destornilladores aislados[cite: 11].</li>
-                    <li><strong>Mantenimiento del Gobernador:</strong> Inspeccionar visualmente el varillaje mecánico del actuador (Figura 2). Debe estar libre de corrosión y moverse sin resistencia física. Revisar el cableado del sensor de velocidad magnético (pickup) asegurando que no existan cortes[cite: 2].</li>
-                    <li><strong>Inspección de Sensores:</strong> Ubicar los sensores de presión de aceite y temperatura de refrigerante en el bloque. Verificar integridad de los conectores. Si un sensor muestra filtración, extraer y reemplazar utilizando el torquímetro al valor especificado (4.1 a 4.3 kg.m para hilos M14)[cite: 2].</li>
-                    <li><strong>Restablecimiento:</strong> Reconectar el terminal negativo de la batería[cite: 2]. Retirar tarjeta LOTO. Encender el panel APM303. Ingresar al menú de parámetros mecánicos (Pantalla 4) para verificar lectura de voltaje de batería (debe ser aprox. 24V)[cite: 11].</li>
-                </ol>
-            </div>
-
-            <div class="img-container">
-                <!-- INSTRUCCIÓN DE IMAGEN 3: Extraer del catálogo de partes -->
-                <p class="img-instructions">📸 INSTRUCCIÓN PARA EL ALUMNO: Recorta la porción de los sensores de la "Fig. 2740 SWITCH & SENSOR (1)" de la página 184 del archivo '509833079-P126TI-DE12T-PARTBOOK.pdf', guárdala como 'sensores.png' y elimina este texto rojo.</p>
-                <img src="sensores.png" alt="Sensores de Motor Doosan">
-                <p><em>Figura 3: Disposición de los sensores de temperatura y presión en el motor.</em></p>
+            <!-- Imagen 5 -->
+            <div class="img-placeholder">
+                <div class="img-instruction">📷 Reemplaza 'foto_funcionando.jpg' con una foto del panel encendido o motor en pruebas</div>
+                <img src="foto_funcionando.jpg" alt="Pruebas de Funcionamiento">
+                <p><em>Figura 5: Verificación final de parámetros en tiempo real.</em></p>
             </div>
 
         </div>
     </div>
 
     <script>
-        // Banco de 10 preguntas básicas sobre LOTO y EPP
+        // Banco de 10 preguntas (EPP y LOTO básico)
         const allQuestions = [
-            { q: "¿Cuántas personas como mínimo deben ejecutar esta mantención según el protocolo?", options: ["1 persona", "2 personas", "3 personas"], ans: 1 },
-            { q: "Antes de abrir el panel APM303, ¿cuál es el primer paso obligatorio?", options: ["Desconectar los sensores", "Llamar al supervisor", "Aplicar procedimiento LOTO"], ans: 2 },
-            { q: "Al aplicar LOTO en las baterías de 24V, ¿qué cable se debe desconectar primero para evitar cortocircuitos?", options: ["El cable positivo", "El cable de tierra (negativo)", "Cualquiera de los dos"], ans: 1 },
-            { q: "¿Qué característica de seguridad deben cumplir sus zapatos para intervenir el tablero de control?", options: ["Ser dieléctricos", "Tener suela de goma común", "Ser impermeables"], ans: 0 },
-            { q: "¿Qué EPP debe utilizar en sus manos al manipular placas electrónicas dentro del panel APM303?", options: ["Guantes de cabritilla", "Pulsera o guantes antiestáticos (ESD)", "Guantes de soldador"], ans: 1 },
-            { q: "Al intervenir sensores cerca del bloque inmediatamente después de que el motor se detiene, ¿qué EPP es vital?", options: ["Guantes quirúrgicos", "Guantes térmicos", "Cinta aislante en los dedos"], ans: 1 },
-            { q: "Tras colocar su candado LOTO, ¿cómo comprueba que el equipo es seguro para intervenir (Energía Cero)?", options: ["Midiendo con un multímetro", "Apretando el botón de encendido", "Confiando en la etiqueta"], ans: 0 },
-            { q: "¿Qué característica deben tener sus destornilladores y pinzas para trabajar en los bornes del equipo?", options: ["Punta imantada", "Aislación eléctrica certificada", "Ser de acero inoxidable puro"], ans: 1 },
-            { q: "Al revisar líneas o sensores que contienen fluidos a presión, ¿qué EPP protege su rostro?", options: ["Lentes de seguridad o pantalla facial", "Mascarilla N95", "Casco de seguridad estándar"], ans: 0 },
-            { q: "Si detecta un cable pelado energizado que no está en la pauta de trabajo, ¿qué debe hacer?", options: ["Aislarlo con huincha y seguir", "Detenerse, aislar el área y avisar al supervisor", "Ignorarlo para cumplir con el tiempo"], ans: 1 }
+            { q: "Según el protocolo de seguridad para la intervención de este equipo, ¿cuántas personas como mínimo deben participar?", options: ["1 persona", "2 personas", "No hay mínimo"], ans: 1 },
+            { q: "Antes de intervenir el panel de control y sensores, ¿cuál es el primer paso obligatorio?", options: ["Desconectar un sensor", "Aplicar Bloqueo y Etiquetado (LOTO)", "Dar arranque manual"], ans: 1 },
+            { q: "Dado que se intervendrá cableado de instrumentación, ¿qué característica principal debe tener su calzado?", options: ["Punta de acero simple", "Dieléctrico (aislante eléctrico)", "Antideslizante básico"], ans: 1 },
+            { q: "Al desmontar un sensor de presión de aceite del bloque del motor, ¿qué EPP es indispensable para su rostro?", options: ["Gafas de seguridad o pantalla facial", "Mascarilla de tela", "Tapones auditivos"], ans: 0 },
+            { q: "Si debe intervenir sensores cercanos al bloque de un motor recién detenido, ¿qué guantes debe utilizar?", options: ["Guantes de látex", "Guantes térmicos o de cuero", "Manos descubiertas"], ans: 1 },
+            { q: "Para proteger las placas del controlador (APM303) de la estática de su cuerpo, usted debe usar:", options: ["Guantes de goma gruesa", "Pulsera antiestática (ESD)", "Zapatos conductores"], ans: 1 },
+            { q: "Una vez aplicado el LOTO en el tablero, ¿qué acción procede antes de tocar terminales?", options: ["Confiar en la etiqueta", "Medir con multímetro para asegurar 'Energía Cero'", "Tocar con un destornillador"], ans: 1 },
+            { q: "¿Qué característica de seguridad deben cumplir las herramientas manuales utilizadas en el tablero?", options: ["Ser de acero inoxidable", "Contar con aislación eléctrica certificada", "Tener mangos metálicos"], ans: 1 },
+            { q: "Si en el Laboratorio de Máquinas hay otros motores operando cerca, ¿qué EPP es obligatorio?", options: ["Ninguno", "Tapones o fonos protectores auditivos", "Gorro de tela"], ans: 1 },
+            { q: "Si durante la inspección descubre un cable energizado pelado que no estaba en la pauta, ¿qué hace?", options: ["Lo corta", "Lo aísla con cinta y sigue el trabajo", "Detiene el trabajo, aísla la zona e informa al supervisor"], ans: 2 }
         ];
 
         let currentQuestions = [];
@@ -258,18 +511,15 @@
             }
 
             if (score === 5) {
-                // Éxito: Ocultar encuesta y mostrar manual
                 document.getElementById('survey-container').style.display = 'none';
                 document.getElementById('manual-container').style.display = 'block';
-                window.scrollTo(0, 0);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
-                // Fallo: Mostrar mensaje de error
                 document.getElementById('error-msg').style.display = 'block';
-                window.scrollTo(0, document.body.scrollHeight);
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
             }
         }
 
-        // Iniciar cuestionario al cargar la página
         window.onload = loadQuiz;
     </script>
 </body>

@@ -48,7 +48,7 @@
             padding: 0 15px;
         }
 
-        /* ----- ESTILOS DEL CUESTIONARIO ----- */
+        /* ----- ESTILOS DEL CUESTIONARIO Y CHECKLISTS ----- */
         #survey-container {
             background: var(--card-bg);
             padding: 30px;
@@ -215,7 +215,7 @@
         table { 
             width: 100%; 
             border-collapse: collapse; 
-            min-width: 700px; 
+            min-width: 750px; 
         }
         
         th, td { 
@@ -334,7 +334,7 @@
         <div id="survey-container">
             <div class="loto-header">
                 <h3>🛑 BARRERA DE SEGURIDAD OBLIGATORIA</h3>
-                <p>El sistema de Control, Protecciones e Instrumentación está compuesto por los <strong>sensores de presión y temperatura, regulador de velocidad, parada de emergencia y tablero de control</strong>. Para desbloquear el manual técnico de estos subconjuntos, el operador debe aprobar la validación de EPP y Procedimientos. Toda intervención requiere estrictamente una dotación de <strong>2 personas</strong>.</p>
+                <p>El Sistema de Control, Protecciones e Instrumentación está compuesto por los <strong>sensores de presión y temperatura, regulador de velocidad, parada de emergencia y el tablero</strong>. Para desbloquear el manual técnico de estos subconjuntos, el operador debe aprobar la validación de EPP y Procedimientos. Toda intervención requiere estrictamente una dotación de <strong>2 personas</strong>.</p>
             </div>
             
             <div style="margin-bottom: 30px;">
@@ -342,8 +342,8 @@
                 <div class="checklist-container">
                     <label class="check-item"><input type="checkbox" class="epp-check"> <span><strong>Ropa de trabajo:</strong> Overol de algodón ajustado, sin mangas sueltas ni desgarros.</span></label>
                     <label class="check-item"><input type="checkbox" class="epp-check"> <span><strong>Calzado:</strong> Zapatos de seguridad dieléctricos y antideslizantes.</span></label>
-                    <label class="check-item"><input type="checkbox" class="epp-check"> <span><strong>Manos:</strong> Pulsera o guantes antiestáticos (ESD) para el panel, y guantes térmicos/cuero para extraer sensores.</span></label>
-                    <label class="check-item"><input type="checkbox" class="epp-check"> <span><strong>Rostro y Oídos:</strong> Gafas de seguridad o pantalla facial clara, y protección auditiva obligatoria.</span></label>
+                    <label class="check-item"><input type="checkbox" class="epp-check"> <span><strong>Manos:</strong> Pulsera o guantes antiestáticos (ESD) para el panel APM303, y guantes térmicos/cuero para extraer sensores del bloque.</span></label>
+                    <label class="check-item"><input type="checkbox" class="epp-check"> <span><strong>Rostro y Oídos:</strong> Gafas de seguridad o pantalla facial clara, y protección auditiva obligatoria en la sala de máquinas.</span></label>
                     <label class="check-item"><input type="checkbox" class="epp-check"> <span><strong>Metales:</strong> Retiro absoluto de anillos, relojes, collares, pulseras y aros.</span></label>
                     <label class="check-item"><input type="checkbox" class="epp-check"> <span><strong>Cabello:</strong> Todo cabello largo (hombres y mujeres) recogido estrictamente hacia atrás y contenido bajo cofia o casco.</span></label>
                 </div>
@@ -367,49 +367,49 @@
             <!-- 1. ENERGÍAS RESIDUALES Y PERMISOS -->
             <div class="section-card">
                 <h2>🔒 1. Permisos, LOTO y Control de Energías Residuales</h2>
-                <p>El bloqueo y etiquetado (LOTO) es la medida de base, pero no la única. Antes de intervenir el sistema de instrumentación y control, se debe tramitar el <strong>Permiso de Trabajo y el Análisis Previo del Riesgo (ART)</strong>. Se exige identificar y controlar las siguientes energías residuales:</p>
+                <p>El bloqueo y etiquetado (LOTO) es la medida de base, pero no la única. Antes de intervenir los actuadores y sensores, se debe tramitar el <strong>Permiso de Trabajo y el Análisis Previo del Riesgo (ART)</strong>. Se exige identificar y controlar las siguientes energías residuales operativas:</p>
                 
                 <div class="energy-box">
                     <strong> Eléctrica Almacenada y Prevención de Arranque Inesperado</strong><br>
-                    Baterías de arranque, tablero y alternador de carga.<br>
-                    <em>Control:</em> Desconectar borne negativo, aplicar candado y tarjeta LOTO eléctrico. Esto es un requerimiento ineludible para la <strong>prevención del arranque inesperado al barrar o girar el motor</strong> manualmente durante el ajuste y calibración del actuador.
+                    Existencia de tensión en baterías de arranque, capacitores del tablero APM303 y alternador de carga.<br>
+                    <em>Control:</em> Desconectar el borne negativo (-), aplicar candado y tarjeta LOTO. Esto es de carácter ineludible para la <strong>prevención del arranque inesperado al "barrar" o girar el motor</strong> manualmente durante el ajuste metrológico del sensor magnético.
                 </div>
                 
                 <div class="energy-box">
                     <strong> Térmica y Permiso de Trabajo en Caliente</strong><br>
-                    Colector de escape, turbocompresor, aceite y refrigerante alcanzan temperaturas criticas tras la detención.<br>
-                    <em>Control:</em> Respetar tiempos de enfriamiento. La extracción de sensores agripados en el bloque mediante la aplicación de temperatura externa requiere obligatoriamente tramitar un <strong>Permiso de Trabajo en Caliente</strong>.
+                    El colector de escape, turbocompresor, block, aceite y refrigerante alcanzan temperaturas criticas (sobre 100°C) tras la detención.<br>
+                    <em>Control:</em> Respetar curvas de enfriamiento. Si un sensor del bloque está agripado y su extracción mecánica falla, requiriendo la aplicación de llama abierta (soplete) para dilatar el material, es obligatorio tramitar un <strong>Permiso de Trabajo en Caliente</strong> previamente.
                 </div>
 
                 <div class="energy-box">
                     <strong> Presión de Fluido y Riesgo de Inyección Subcutánea</strong><br>
-                    Circuito de refrigeración presurizado, galerías de lubricación y proximidad a cañerías de inyección y alimentación de combustible.<br>
-                    <em>Control:</em> Despresurizar mediante purgas lentas controladas. Los sensores están adyacentes al sistema de inyección; durante pruebas de presurización existe un alto <strong>riesgo de inyección subcutánea</strong>; es imperativo el uso de pantallas faciales.
+                    Circuito de refrigeración presurizado, galerías de lubricación (hasta 10 bar) y extrema proximidad a las cañerías de alta presión de inyección.<br>
+                    <em>Control:</em> Despresurizar el circuito mediante purgas lentas y controladas. Dado que los sensores están adyacentes al sistema de inyección (160-220 kg/cm²), durante las pruebas existe un alto <strong>riesgo de inyección subcutánea</strong>; es imperativo el uso de pantallas faciales.
                 </div>
 
                 <div class="energy-box">
                     <strong> Rotacional por Inercia</strong><br>
-                    El turbocompresor y el ventilador del radiador continúan girando tras el corte de inyección.<br>
-                    <em>Control:</em> Prohibición absoluta de intervenir el regulador de velocidad o sensores frontales hasta verificar el cese total, tanto auditivo como visual, de los elementos inerciales.
+                    El turbocompresor y el ventilador del radiador continúan girando a altas RPM después del corte de combustible.<br>
+                    <em>Control:</em> Prohibición absoluta de aproximarse al regulador de velocidad o a los sensores ubicados en la cara frontal del motor hasta confirmar el cese total, visual y auditivo, de la inercia rotacional.
                 </div>
 
                 <div class="energy-box">
                     <strong> Gravitacional e Izaje de Componentes</strong><br>
-                    Componentes desmontados, izados o suspendidos (Ej. retiro de consolas o placas del tablero).<br>
-                    <em>Control:</em> Planificación de trayectorias y uso de aparejos certificados para el <strong>izaje de componentes</strong> mayores, prohibiendo el tránsito o posicionamiento bajo cargas suspendidas.
+                    Riesgo presente ante componentes desmontados, izados o suspendidos (Ej. retiro de consolas, placas de potencia o reemplazo del actuador mecánico).<br>
+                    <em>Control:</em> Planificación de eslingas, uso de tecles certificados para el <strong>izaje de componentes</strong> mayores, y estricta prohibición de transitar o manipular bajo cargas suspendidas.
                 </div>
 
                 <div class="energy-box">
                     <strong> Química: Combustible, Solventes y Gestión de Residuos (MARPOL)</strong><br>
-                    Combustible, aceite, refrigerante y solventes dieléctricos para limpieza electrónica.<br>
-                    <em>Control:</em> Consultar obligatoriamente la <strong>hoja de datos de seguridad (HDS)</strong> de aerosoles limpiadores. Asegurar correcta <strong>ventilación y atmósfera</strong> en la sala de máquinas. Toda placa quemada, envase a presión o paño contaminado está sujeto a la <strong>gestión de residuos peligrosos</strong>, considerando que a bordo aplica estrictamente el <strong>Anexo I del MARPOL</strong>.
+                    Presencia de diésel, aceite lubricante contaminado, refrigerante glicolado y aerosoles solventes dieléctricos para limpieza electrónica.<br>
+                    <em>Control:</em> Consultar obligatoriamente la <strong>hoja de datos de seguridad (HDS)</strong> de los químicos aplicados. Garantizar correcta <strong>ventilación y atmósfera</strong> libre de gases explosivos. Toda placa quemada, envase a presión o paño contaminado por hidrocarburos está sujeto a la <strong>gestión de residuos peligrosos (RESPEL)</strong>, considerando que a bordo rige de forma estricta el <strong>Anexo I del MARPOL</strong>.
                 </div>
             </div>
 
             <!-- 2. CRITICIDAD FMECA Y CÁLCULO NPR -->
             <div class="section-card">
                 <h2>📊 2. Criticidad de Subconjuntos (Cálculo NPR)</h2>
-                <p>Evaluación de los subconjuntos del sistema de control e instrumentación. El Número de Prioridad de Riesgo se calcula matemáticamente: <strong>NPR = Severidad (S) × Ocurrencia (O) × Detección (D)</strong>. (Escala 1 al 10).</p>
+                <p>Evaluación técnica de los subconjuntos. El Número de Prioridad de Riesgo se calcula matemáticamente: <strong>NPR = Severidad (S) × Ocurrencia (O) × Detección (D)</strong>. Todo componente con un NPR superior a 50 o con Severidad extrema (≥8) se clasifica con justificación técnica como <em>Crítico</em>.</p>
                 <div class="table-responsive">
                     <table>
                         <tr>
@@ -419,52 +419,52 @@
                             <th title="Ocurrencia">O</th>
                             <th title="Detección">D</th>
                             <th>NPR</th>
-                            <th>Clasificación</th>
+                            <th>Clasificación y Justificación</th>
                         </tr>
                         <tr>
-                            <td><strong>Regulador de Velocidad (Gobernador)</strong></td>
-                            <td>Atascamiento mecánico o falla del Pickup magnético. Provoca inestabilidad severa de frecuencia o sobrerrégimen crítico, requiriendo corte de inyección de emergencia.</td>
+                            <td><strong>Regulador de velocidad (Gobernador / Actuador)</strong></td>
+                            <td>Atascamiento mecánico o falla magnética del Pickup. Provoca inestabilidad de frecuencia o sobrerrégimen (Overspeed), requiriendo corte de inyección de emergencia.</td>
                             <td>8</td>
                             <td>4</td>
                             <td>3</td>
                             <td class="npr-high">96</td>
-                            <td>Crítico</td>
+                            <td><strong>Crítico.</strong> Afecta la estabilidad eléctrica de la red o destruye el motor por sobrerrégimen.</td>
                         </tr>
                         <tr>
                             <td><strong>Sensores de Presión y Temperatura</strong></td>
-                            <td>Falsa lectura por degradación resistiva. El controlador no recibirá la señal real y omitirá activar la protección automática (Shutdown), derivando en daño catastrófico al bloque.</td>
+                            <td>Falsa lectura por degradación resistiva (fuera de rango). El APM303 no activará la protección automática ante un fallo térmico/hidráulico real.</td>
                             <td>8</td>
                             <td>4</td>
                             <td>4</td>
                             <td class="npr-high">128</td>
-                            <td>Crítico</td>
+                            <td><strong>Crítico.</strong> La pérdida de protección automática resulta en daño catastrófico al motor.</td>
                         </tr>
                         <tr>
                             <td><strong>Tablero de Control (APM303)</strong></td>
-                            <td>Pérdida de placa base por fatiga térmica/vibración. Resulta en imposibilidad total de arranque o detención intempestiva; pérdida de respaldo energético en la red.</td>
+                            <td>Pérdida de comunicación o falla de CPU por fatiga térmica/vibración. Resulta en imposibilidad total de arranque o detención intempestiva.</td>
                             <td>8</td>
                             <td>3</td>
                             <td>2</td>
                             <td class="npr-high">48</td>
-                            <td>Crítico</td>
+                            <td><strong>Crítico.</strong> Inhabilita por completo la función del generador de proveer respaldo a la red.</td>
                         </tr>
                         <tr>
-                            <td><strong>Parada de Emergencia (Botón)</strong></td>
-                            <td>Corrosión de contactos internos (Falla Oculta). Impide el corte manual y físico de la energía ante un evento catastrófico o atrapamiento de personal operario.</td>
+                            <td><strong>Parada de Emergencia</strong></td>
+                            <td>Corrosión de contactos internos Normalmente Cerrados (Falla Oculta). Impide el corte manual y físico de la energía ante un evento extremo.</td>
                             <td>9</td>
                             <td>2</td>
                             <td>8</td>
                             <td class="npr-high">144</td>
-                            <td>Crítico <br>(Falla Oculta)</td>
+                            <td><strong>Crítico (Falla Oculta).</strong> Alta severidad por comprometer la integridad humana en atrapamientos.</td>
                         </tr>
                         <tr>
-                            <td><strong>Alarmas Visuales/Acústicas</strong></td>
-                            <td>Zumbador o LED de alarma quemado (Falla Oculta). El equipo opera normalmente, pero el operador es incapaz de percibir advertencias de pre-alarma en tiempo real.</td>
+                            <td><strong>Alarmas del Tablero</strong></td>
+                            <td>Zumbador o LED de pre-alarma quemado (Falla Oculta). El equipo opera normalmente, pero el operador es incapaz de percibir advertencias.</td>
                             <td>5</td>
                             <td>2</td>
                             <td>7</td>
                             <td class="npr-med">70</td>
-                            <td>No Crítico <br>(Falla Oculta)</td>
+                            <td><strong>No Crítico.</strong> Falla oculta latente, pero el APM303 detendrá el motor ante una falla real sin depender del LED.</td>
                         </tr>
                     </table>
                 </div>
@@ -472,43 +472,60 @@
 
             <div class="img-placeholder">
                 <img src="foto_panel.jpg" alt="Panel de Control y Botón de Parada">
-                <p><em>Figura 1: Interfaz del Tablero de Control APM303 y disposición del actuador de Parada de Emergencia.</em></p>
+                <p><em>Figura 1: Interfaz del Tablero de Control APM303 y disposición física del actuador de Parada de Emergencia.</em></p>
             </div>
 
             <!-- 3. HERRAMIENTAS Y HH -->
             <div class="section-card">
-                <h2>🛠️ 3. Planificación: Horas-Hombre y Herramientas</h2>
+                <h2>🛠️ 3. Tareas, Horas-Hombre y Requerimiento de Herramientas</h2>
                 <div class="table-responsive">
                     <table>
                         <tr>
-                            <th>Trabajo de Mantenimiento Integral</th>
+                            <th>Tarea de Mantenimiento Integral</th>
                             <th>Dotación Mínima</th>
                             <th>Duración (h)</th>
                             <th>Horas-Hombre (HH)</th>
                         </tr>
                         <tr>
-                            <td>Diagnóstico de cuadro de control, limpieza de placas, calibración de regulador de velocidad y sustitución/torque de sensores de bloque.</td>
+                            <td>Diagnóstico de cuadro de control, limpieza de placas, calibración micrométrica de regulador de velocidad, sustitución y torque de sensores del bloque.</td>
                             <td>1 Eléctrico/Inst. <br> 1 Mecánico</td>
                             <td>2.0 h</td>
                             <td>4.0 HH</td>
                         </tr>
                     </table>
-                    <p style="font-size: 0.85rem; color: #666; font-style: italic; margin-top: 10px;">*Nota: Las estimaciones de Horas-Hombre (HH) se han calculado combinando la medición directa de accesibilidad en el laboratorio de máquinas y las holguras procedimentales estándar de la industria.</p>
+                    <p style="font-size: 0.85rem; color: #666; font-style: italic; margin-top: 10px;">*Nota: El origen de las estimaciones de Horas-Hombre (HH) corresponde a un cálculo analítico propio del grupo, combinando la medición directa de accesibilidad física en el laboratorio de máquinas y utilizando como referencia los parámetros de la literatura técnica de Dev, Saha y Bruce (2022).</p>
                 </div>
 
-                <p><strong>Equipamiento Técnico, Instrumentos de Diagnóstico e Insumos Específicos:</strong></p>
+                <h3 style="color: var(--primary-dark); font-size: 1.1rem; margin-top: 20px;">Especificación Estricta de Herramientas e Instrumentos</h3>
                 <ul>
-                    <li><strong>Instrumentos con Calibración Vigente:</strong> Multímetro digital True-RMS para diagnóstico de placas, y calibrador de lazos de corriente (4-20mA) para simulación de parámetros de sensores.</li>
-                    <li><strong>Metrología Mecánica:</strong> Juego de Galgas de Espesores (Feeler Gauge) en milímetros para ajuste milimétrico del sensor magnético.</li>
-                    <li><strong>Herramientas con Aislación Certificada:</strong> Juego de destornilladores dieléctricos (1000V) normados, de uso obligatorio para ajuste de borneras traseras en el tablero de control.</li>
-                    <li><strong>Torquímetro de Precisión:</strong> Para la correcta instalación y asentamiento de las arandelas de cobre de los sensores de presión/temperatura en el bloque. Torque estándar especificado para hilos M14: <strong>4.1 a 4.3 kg.m</strong>.</li>
-                    <li><strong>Insumos:</strong> Solvente limpiador de contactos electrónicos de secado rápido (verificar HDS) y sellador de roscas líquido (teflón industrial).</li>
+                    <li><strong>Instrumentos de Medición (Requieren Certificado de Calibración Vigente):</strong>
+                        <ul>
+                            <li>Multímetro digital True-RMS para diagnóstico de continuidad en placas y relés.</li>
+                            <li>Calibrador de lazos de corriente (4-20mA) para simulación inyectada de parámetros de sensores hacia el APM303.</li>
+                            <li>Juego de <strong>Galgas de Espesores (Feeler Gauge) de 0.05 a 1.0 mm</strong>, vitales para el ajuste de la luz libre (Air gap) del sensor magnético.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Herramientas Genéricas y Aisladas:</strong>
+                        <ul>
+                            <li>Juego de <strong>llaves punta corona métricas (10, 12, 14, 17, 19 y 22 mm)</strong> para desacople de bulbos, varillaje de gobernador y terminales.</li>
+                            <li>Juego de <strong>destornilladores de precisión (2.5 mm y 3.5 mm) con aislación eléctrica certificada (1000V)</strong>, de uso estricto y obligatorio para intervenir las borneras K1 y K6 del controlador APM303 sin generar cortocircuitos por proximidad.</li>
+                        </ul>
+                    </li>
+                    <li><strong>Apriete de Precisión (Torque):</strong>
+                        <ul>
+                            <li><strong>Torquímetro de rango bajo (1.0 a 10.0 kg·m)</strong> con calibración vigente. De uso obligatorio para la correcta instalación y asentamiento de las arandelas de cobre en el bloque. Los valores exigidos por el manual del fabricante Doosan son:
+                                <br>- Tornillería de soportes de actuador (M10, Grado 8.8): <strong>4.4 kg·m</strong>.
+                                <br>- Sensores de temperatura y presión (hilos M14x1.5): <strong>4.1 a 4.3 kg·m</strong>.
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Insumos Químicos:</strong> Solvente limpiador de contactos electrónicos de secado rápido (con HDS a la vista) y sellador de roscas de teflón líquido de grado industrial.</li>
                 </ul>
             </div>
 
             <div class="img-placeholder">
                 <img src="foto_limpieza.jpg" alt="Conexiones traseras del tablero">
-                <p><em>Figura 2: Arquitectura de conexiones traseras y distribución de borneras K1 y K6 del controlador.</em></p>
+                <p><em>Figura 2: Arquitectura de conexiones traseras y distribución de borneras de control K1 y medición K6 del APM303.</em></p>
             </div>
 
             <!-- 4. PROCEDIMIENTO PASO A PASO -->
@@ -516,57 +533,57 @@
                 <h2>⚙️ 4. Procedimiento de Mantenimiento (Paso a Paso)</h2>
                 
                 <div class="step-block">
-                    <h3>Fase 1: Preparación, Análisis de Riesgo y Aislamiento de Energías</h3>
-                    <p>Tramitar y documentar el Análisis de Riesgo del Trabajo (ART) pertinente al sistema de instrumentación. Verificar en la HDS del solvente dieléctrico los protocolos de manejo químico y asegurar extracción mecánica para garantizar una atmósfera segura. Proceder al aislamiento eléctrico: apagar el disyuntor principal del tablero, dirigirse al banco de baterías y desconectar obligatoriamente el borne negativo (-) en primer lugar. Instalar candados y tarjetas LOTO. Emplear el multímetro digital en las borneras del panel para certificar de forma indiscutible el estado de Energía Cero.</p>
+                    <h3>Fase 1: Preparación, Análisis de Riesgo (ART) y Aislamiento de Energías</h3>
+                    <p>Tramitar y documentar en el sitio el <strong>Análisis Previo del Riesgo (ART)</strong> pertinente a instrumentación y el Permiso de Trabajo Eléctrico. Verificar en la HDS del solvente las indicaciones para evitar intoxicación y asegurar correcta <strong>ventilación y atmósfera</strong>. Proceder al aislamiento eléctrico: apagar el controlador, dirigirse a las baterías y desconectar obligatoriamente el borne negativo (-) instalando candados LOTO. Verificar Energía Cero con multímetro en bornes K1/K6. Esta acción previene categóricamente el <strong>arranque inesperado al barrar el motor</strong>.</p>
                 </div>
 
                 <div class="step-block">
-                    <h3>Fase 2: Inspección y Diagnóstico del Tablero de Control y Parada de Emergencia</h3>
-                    <p>Tras asegurar la puesta a tierra personal mediante pulsera antiestática (ESD), abrir la consola del tablero. Retirar cuidadosamente los conectores traseros y aplicar solvente dieléctrico sobre los pines de contacto para remover oxidación superficial. Inspeccionar bajo luz dirigida las pistas de la placa electrónica en busca de fatiga térmica. Acto seguido, examinar mecánicamente el botón de Parada de Emergencia tipo hongo; desconectar sus terminales y medir continuidad óhmica en sus polos Normalmente Cerrados (NC) para descartar fallas ocultas que impidan su accionamiento en crisis.</p>
+                    <h3>Fase 2: Intervención del Tablero de Control y Parada de Emergencia</h3>
+                    <p>Tras asegurar la equipotencialidad personal usando pulsera <strong>EPP específico (ESD)</strong>, abrir la consola del tablero usando destornilladores aislados. Retirar los conectores traseros (Fig. 2) y aplicar solvente dieléctrico sobre los pines K1/K6 para remover oxidación. Inspeccionar las pistas de la placa base buscando indicios de fatiga térmica. Seguidamente, examinar mecánicamente el botón de <strong>Parada de Emergencia</strong>; desconectar sus terminales y medir continuidad óhmica con el multímetro en sus polos Normalmente Cerrados (NC) pulsando y reseteando, descartando así fallas ocultas que impidan su accionamiento en una crisis.</p>
                 </div>
 
                 <div class="step-block">
                     <h3>Fase 3: Mantenimiento del Regulador de Velocidad y Calibración del "Air Gap"</h3>
-                    <p>Verificar la suavidad de la varilla de transferencia del actuador hacia la bomba de inyección, descartando holguras o agarrotamiento. Localizar el Magnetic Speed Sensor (Pickup) en la cercha del volante de inercia. Extraer el sensor y remover la acumulación de limaduras metálicas en su punta magnética. Para la calibración: roscar el sensor a mano suavemente hasta que la punta haga contacto físico con la cresta de un diente del volante de inercia. Desde este punto exacto (referencia cero), retroceder el sensor girándolo en sentido antihorario exactamente 3/4 de vuelta para garantizar el <strong>"Air Gap" estipulado por el fabricante de 0.45 mm</strong>. Asegurar firmemente la posición fijando la contratuerca.</p>
+                    <p>Con el motor asegurado contra giros, verificar la suavidad de la varilla de transferencia del actuador del gobernador hacia la bomba de inyección. Usando llave de 22mm, aflojar la contratuerca y extraer el <em>Magnetic Speed Sensor</em> (Pickup) de la carcasa del volante de inercia. Limpiar los residuos ferrosos de la punta magnética. Para su calibración exacta: roscar el sensor a mano suavemente hasta que la punta haga contacto físico con la cresta de un diente del volante de inercia. Desde este punto referencial, retroceder el sensor girándolo en sentido antihorario exactamente 3/4 de vuelta para garantizar el <strong>"Air Gap" estipulado por Doosan de 0.45 mm</strong> (Verificable con Galgas de Espesores). Asegurar la posición fijando la contratuerca a 5.6 kg.m.</p>
                 </div>
 
                 <div class="img-placeholder">
                     <img src="foto_pickup.jpg" alt="Ajuste de Sensor Magnético">
-                    <p><em>Figura 3: Actuador electrónico y procedimiento de ajuste micrométrico de la luz del sensor de velocidad.</em></p>
+                    <p><em>Figura 3: Posición del actuador electrónico y esquema metrológico de ajuste de la luz libre (Air gap) del sensor de velocidad.</em></p>
                 </div>
 
                 <div class="step-block">
                     <h3>Fase 4: Extracción y Torque de Sensores de Temperatura y Presión</h3>
-                    <p>Certificar mediante termometría infrarroja la disipación de la energía térmica en el bloque del motor. Aflojar los bulbos sensores de forma milimétrica utilizando paños industriales para liberar controladamente cualquier presión hidráulica residual. Retirar los sensores defectuosos. Limpiar minuciosamente las roscas hembra del bloque eliminando restos de sellante carbonizado. Aplicar sellador de roscas líquido al hilo del sensor nuevo y montar utilizando el torquímetro calibrado, aplicando un par de apriete exacto de entre <strong>4.1 a 4.3 kg.m</strong> para asentar la arandela de cobre sin deformar la carcasa del sensor. Reconectar arneses asegurando los clips de retención.</p>
+                    <p>Certificar mediante termometría la completa disipación de la <strong>energía térmica</strong> en el bloque. Aflojar los bulbos sensores (llave corona de 19mm) de forma milimétrica utilizando paños industriales para despresurizar controladamente fluidos residuales. Retirar los sensores defectuosos empleando guantes de cuero. Limpiar minuciosamente las roscas del bloque eliminando restos de sellante. Aplicar sellador de teflón líquido a los hilos M14x1.5 del sensor nuevo y montar utilizando el torquímetro, aplicando un par de apriete exacto de <strong>4.1 a 4.3 kg·m</strong> para asentar la arandela sin fracturar la rosca. Conectar arneses y clips.</p>
                 </div>
 
                 <div class="img-placeholder">
                     <img src="foto_sensores.jpg" alt="Sensores del Motor Doosan">
-                    <p><em>Figura 4: Posicionamiento técnico de los sensores de instrumentación en el bloque de cilindros.</em></p>
+                    <p><em>Figura 4: Posicionamiento técnico y arquitectura de los sensores de instrumentación en el bloque de cilindros Doosan.</em></p>
                 </div>
 
                 <div class="step-block">
-                    <h3>Fase 5: Cierre Perimetral y Gestión Ambiental</h3>
-                    <p>Consolidar todo componente electrónico sustituido, junto con los paños industriales saturados de aceite y solventes, en tambores herméticos codificados para Residuos Peligrosos (RESPEL). Esta disposición se ejecuta en cumplimiento riguroso de las directrices del Anexo I del convenio internacional MARPOL, garantizando la trazabilidad del residuo y evitando la contaminación accidental de las sentinas del cuarto de máquinas.</p>
+                    <h3>Fase 5: Cierre Perimetral y Gestión de Residuos Peligrosos</h3>
+                    <p>Consolidar todo sensor o componente electrónico sustituido, junto con los paños industriales saturados de fluidos o solventes, en tambores herméticos codificados para Residuos Peligrosos (RESPEL). Esta disposición de <strong>gestión de residuos peligrosos</strong> se ejecuta en cumplimiento riguroso de las directrices del <strong>Anexo I del MARPOL</strong>, garantizando la segregación e impidiendo la contaminación accidental de las sentinas del buque.</p>
                 </div>
             </div>
 
-            <!-- 5. CHECKLIST PUESTA EN SERVICIO -->
+            <!-- 5. CHECKLIST PUESTA EN SERVICIO Y BOTÓN INTERACTIVO -->
             <div class="section-card">
                 <h2>✅ 5. Protocolo de Re-comisionamiento y Pruebas Funcionales</h2>
-                <p>Ejecute una inspección visual sistemática y confirme <strong>cada uno</strong> de los siguientes parámetros operativos antes de restituir el control del tablero a modo automático y dar por finalizado el servicio.</p>
+                <p>Ejecute una inspección visual sistemática y confirme marcando <strong>absolutamente todos</strong> los siguientes parámetros operativos antes de restituir el control del tablero a modo automático y dar por finalizado el servicio.</p>
                 
                 <div class="checklist-container" id="final-checklist">
-                    <label class="check-item"><input type="checkbox" class="final-check"> <span style="margin-top: 3px;"><strong>Área Despejada:</strong> Inspección visual 360° completada; paños retirados y herramientas dieléctricas contabilizadas.</span></label>
-                    <label class="check-item"><input type="checkbox" class="final-check"> <span style="margin-top: 3px;"><strong>Disposición Ambiental:</strong> Residuos de la mantención segregados y dispuestos en contenedores RESPEL según MARPOL.</span></label>
-                    <label class="check-item"><input type="checkbox" class="final-check"> <span style="margin-top: 3px;"><strong>Desbloqueo LOTO:</strong> Retiro formal de candados y tarjetas. Reconexión del banco de baterías 24V (Borno positivo conectado primero, negativo al final para mitigar arcos).</span></label>
-                    <label class="check-item"><input type="checkbox" class="final-check"> <span style="margin-top: 3px;"><strong>Secuencia de Inicialización:</strong> Tablero APM303 encendido correctamente; pantalla de inicio carga sin reportar anomalías de memoria EEPROM.</span></label>
-                    <label class="check-item"><input type="checkbox" class="final-check"> <span style="margin-top: 3px;"><strong>Validación Parada Emergencia:</strong> Prueba física del botón "hongo" de Parada de Emergencia ejecutada con éxito y reseteo manual completado sin atascos.</span></label>
-                    <label class="check-item"><input type="checkbox" class="final-check"> <span style="margin-top: 3px;"><strong>Maniobra de Arranque:</strong> Ejecución de arranque en modo MANUAL desde el tablero. Desenganche acústico del motor de arranque confirmado y normal.</span></label>
-                    <label class="check-item"><input type="checkbox" class="final-check"> <span style="margin-top: 3px;"><strong>Regulación de Velocidad:</strong> Gobernador estabiliza el motor en régimen estacionario nominal de 1500 RPM y 50 Hz sin oscilaciones (Hunting).</span></label>
-                    <label class="check-item"><input type="checkbox" class="final-check"> <span style="margin-top: 3px;"><strong>Instrumentación de Presión:</strong> Sensor de presión de aceite operativo, transmitiendo en tiempo real una lectura estabilizada por sobre <strong>0.50 bar</strong>.</span></label>
-                    <label class="check-item"><input type="checkbox" class="final-check"> <span style="margin-top: 3px;"><strong>Instrumentación Térmica:</strong> Sensor de temperatura de refrigerante transmitiendo rampa de calentamiento normal (Límite crítico del sistema configurado a <strong>103°C</strong>).</span></label>
-                    <label class="check-item"><input type="checkbox" class="final-check"> <span style="margin-top: 3px;"><strong>Cierre Documental:</strong> Firmas de cierre en el ART y Permiso de Trabajo Eléctrico ejecutadas. Operador sitúa el selector del panel APM303 en modo AUTO.</span></label>
+                    <label class="check-item"><input type="checkbox" class="final-check"> <span style="margin-top: 3px;"><strong>1. Área Despejada:</strong> Inspección visual 360° completada; paños retirados y herramientas métricas y dieléctricas contabilizadas y guardadas.</span></label>
+                    <label class="check-item"><input type="checkbox" class="final-check"> <span style="margin-top: 3px;"><strong>2. Disposición Ambiental:</strong> Residuos de la mantención segregados y dispuestos en contenedores RESPEL en cumplimiento de MARPOL Anexo I.</span></label>
+                    <label class="check-item"><input type="checkbox" class="final-check"> <span style="margin-top: 3px;"><strong>3. Desbloqueo LOTO:</strong> Retiro formal de candados y tarjetas. Reconexión de baterías de 24V (Borno positivo conectado primero, negativo al final para mitigar arcos eléctricos).</span></label>
+                    <label class="check-item"><input type="checkbox" class="final-check"> <span style="margin-top: 3px;"><strong>4. Secuencia de Inicialización:</strong> Tablero APM303 energizado correctamente; pantalla de inicio carga sin reportar anomalías de memoria EEPROM o fallas de CPU.</span></label>
+                    <label class="check-item"><input type="checkbox" class="final-check"> <span style="margin-top: 3px;"><strong>5. Validación Parada Emergencia:</strong> Prueba física del botón "hongo" de Parada de Emergencia ejecutada con éxito, y reseteo manual completado sin atascos mecánicos.</span></label>
+                    <label class="check-item"><input type="checkbox" class="final-check"> <span style="margin-top: 3px;"><strong>6. Maniobra de Arranque:</strong> Ejecución de arranque en modo MANUAL desde el tablero APM303. Desenganche acústico del motor de arranque confirmado en los tiempos nominales.</span></label>
+                    <label class="check-item"><input type="checkbox" class="final-check"> <span style="margin-top: 3px;"><strong>7. Regulación de Velocidad (Actuador):</strong> Gobernador estabiliza el motor en régimen estacionario nominal de 1500 RPM y frecuencia de 50 Hz sin presentar oscilaciones de búsqueda (Hunting).</span></label>
+                    <label class="check-item"><input type="checkbox" class="final-check"> <span style="margin-top: 3px;"><strong>8. Instrumentación de Presión:</strong> Sensor de presión de aceite operativo sin fugas por la rosca, transmitiendo en tiempo real una lectura estabilizada por sobre <strong>0.50 bar</strong>.</span></label>
+                    <label class="check-item"><input type="checkbox" class="final-check"> <span style="margin-top: 3px;"><strong>9. Instrumentación Térmica:</strong> Sensor de temperatura de refrigerante operativo sin fugas, transmitiendo rampa de calentamiento normal (Límite crítico de "Shutdown" configurado a <strong>103°C</strong>).</span></label>
+                    <label class="check-item"><input type="checkbox" class="final-check"> <span style="margin-top: 3px;"><strong>10. Cierre Documental y Entrega:</strong> Firmas de cierre en el ART y cancelación del Permiso de Trabajo Eléctrico ejecutadas. El operador sitúa el selector del panel APM303 en modo AUTO.</span></label>
                 </div>
 
                 <!-- Botón de Confirmación -->
@@ -575,11 +592,12 @@
                 <!-- Sección de Éxito (Oculta por defecto) -->
                 <div id="success-section" style="display:none; text-align:center; padding-top: 30px; border-top: 2px dashed #ddd; margin-top: 30px;">
                     <h3 style="color: #28a745; margin-bottom: 10px; font-size: 1.5rem;">✅ Se finalizó la mantención con éxito.</h3>
-                    <p style="color: var(--primary-dark); font-weight: bold; margin-bottom: 25px;">El panel de control se debería ver como en la foto, indicando los parámetros operacionales nominales.</p>
+                    <p style="color: var(--primary-dark); font-weight: bold; margin-bottom: 25px;">El panel de control APM303 se debería ver como en la foto, indicando los parámetros operacionales nominales estables.</p>
                     
-                    <div class="img-placeholder" style="margin: 0 auto; max-width: 600px; border-color: #28a745;">
-                        <img src="foto_funcionando.jpg" alt="Pruebas de Funcionamiento">
-                        <p style="margin-top: 15px; color: #555;"><em>Figura 5: Verificación final de parámetros en tiempo real en la pantalla del controlador APM303 tras el re-comisionamiento.</em></p>
+                    <div class="img-placeholder" style="margin: 0 auto; max-width: 600px; border-color: #28a745; border-style: solid;">
+                        <div class="img-instruction" style="color: #28a745; border-color: #28a745;">📷 Reemplaza 'foto_funcionando.jpg' con la pantalla de valores mecánicos (Pág. 7)</div>
+                        <img src="foto_funcionando.jpg" alt="Pruebas de Funcionamiento exitosas en el APM303">
+                        <p style="margin-top: 15px; color: #555;"><em>Figura 5: Verificación final de parámetros en tiempo real en la pantalla del controlador APM303 tras el re-comisionamiento exitoso.</em></p>
                     </div>
                 </div>
 
@@ -589,7 +607,6 @@
     </div>
 
     <script>
-        // Preguntas extraídas de tu código anterior (Intactas)
         const allQuestions = [
             { q: "Según el protocolo de seguridad para la intervención de este equipo, ¿cuántas personas como mínimo deben participar?", options: ["1 persona", "2 personas", "No hay mínimo"], ans: 1 },
             { q: "Antes de intervenir el panel de control y sensores, ¿cuál es el primer paso obligatorio?", options: ["Desconectar un sensor", "Aplicar Bloqueo y Etiquetado (LOTO)", "Dar arranque manual"], ans: 1 },
@@ -653,12 +670,12 @@
             }
 
             if (!answeredAll) {
-                alert("Por favor, responda las 5 preguntas antes de verificar.");
+                alert("Por favor, responda las 5 preguntas antes de verificar los permisos.");
                 return;
             }
 
             if (!eppComplete) {
-                document.getElementById('error-msg').innerText = "⚠️ Debe confirmar todos los elementos del Checklist de EPP e Indumentaria.";
+                document.getElementById('error-msg').innerText = "⚠️ Protocolo Incompleto: Debe marcar y confirmar todos los elementos del EPP y la Indumentaria Personal.";
                 document.getElementById('error-msg').style.display = 'block';
                 window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
                 return;
@@ -669,13 +686,13 @@
                 document.getElementById('manual-container').style.display = 'block';
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
-                document.getElementById('error-msg').innerHTML = "⚠️ Evaluación de Seguridad Fallida. Ha respondido incorrectamente " + (5 - score) + " pregunta(s). Haga clic aquí para repasar y volver a intentarlo.";
+                document.getElementById('error-msg').innerHTML = "⚠️ Evaluación de Seguridad Fallida. Ha respondido incorrectamente " + (5 - score) + " pregunta(s). Haga clic aquí para repasar el protocolo y volver a intentarlo.";
                 document.getElementById('error-msg').style.display = 'block';
                 window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
             }
         }
 
-        // Nueva función para el botón final
+        // Función del Botón Final Interactivo
         function finishMaintenance() {
             let allChecked = true;
             const checks = document.querySelectorAll('.final-check');
@@ -684,15 +701,15 @@
             });
             
             if(!allChecked) {
-                alert("Atención: Debe marcar y confirmar todos los pasos del protocolo de re-comisionamiento antes de finalizar la mantención.");
+                alert("Atención Técnica: No es posible finalizar. Debe validar físicamente, marcar y confirmar todos los 10 pasos del protocolo de re-comisionamiento para dar por finalizada la mantención.");
                 return;
             }
             
-            // Ocultar botón y mostrar sección de éxito
+            // Ocultar el botón de confirmación y mostrar la sección de éxito
             document.getElementById('btn-finish').style.display = 'none';
             document.getElementById('success-section').style.display = 'block';
             
-            // Hacer scroll suave hasta la foto final
+            // Auto-scroll suave para revelar la foto y el mensaje final
             setTimeout(() => {
                 window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
             }, 100);

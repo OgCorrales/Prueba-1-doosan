@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Gestión de Mantenimiento - Instrumentación Doosan</title>
+    <title>Gestión de Mantenimiento - Sistema 7: Control e Instrumentación</title>
     <style>
         :root {
             --primary-color: #77ACA2; 
@@ -11,7 +11,6 @@
             --secondary-color: #e3000f;
             --bg-color: #f0f2f5;
             --text-color: #333;
-            --success-color: #28a745;
             --card-bg: #ffffff;
         }
         
@@ -268,6 +267,14 @@
             accent-color: var(--primary-color);
         }
 
+        .energy-box {
+            background-color: #fff9e6;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
         @media (max-width: 768px) {
             body { font-size: 15px; }
             .container { margin: 15px auto; padding: 0 10px; }
@@ -281,7 +288,6 @@
 <body>
 
     <header>
-        <!-- Texto corregido exactamente como pediste -->
         <h1>Mantenimiento Doosan P126TI-II</h1>
     </header>
 
@@ -303,7 +309,6 @@
         <!-- ================= MANUAL TÉCNICO ================= -->
         <div id="manual-container">
 
-            <!-- Imagen Inicial del Equipo -->
             <div class="img-placeholder" style="border: none; background: transparent; padding: 0; margin-bottom: 20px;">
                 <img src="generador_sdmo.jpg" alt="Grupo Electrógeno Kohler SDMO D330" style="box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-radius: 12px;">
             </div>
@@ -322,16 +327,28 @@
                 </div>
             </div>
             
-            <!-- Protocolo LOTO -->
+            <!-- Protocolo LOTO y Energías Residuales -->
             <div class="section-card">
-                <h2>🔒 1. Protocolo Cero: Bloqueo y Etiquetado (LOTO)</h2>
-                <p>Antes de cualquier intervención en el sistema de control, ejecute el siguiente procedimiento obligatorio para aislar las energías residuales:</p>
-                <ul>
-                    <li><strong>Paso 1:</strong> Apague el controlador APM303 desde el panel frontal.</li>
-                    <li><strong>Paso 2:</strong> Desconecte las baterías de arranque de 24V DC. <strong>Obligatorio:</strong> Desconecte siempre el cable de tierra (negativo) primero para evitar riesgo de cortocircuitos.</li>
-                    <li><strong>Paso 3:</strong> Instale candado y tarjeta LOTO en el cortacorriente de las baterías.</li>
-                    <li><strong>Paso 4:</strong> Verifique "Energía Cero" midiendo con multímetro en los terminales del panel APM303.</li>
-                </ul>
+                <h2>🔒 1. Protocolo LOTO y Control de Energías Residuales</h2>
+                <p>El Bloqueo y Etiquetado aísla las fuentes principales, pero el Sistema 7 almacena <strong>energías residuales</strong> que deben controlarse antes de intervenir:</p>
+                
+                <div class="energy-box">
+                    <strong>⚡ Energía Eléctrica (Residual y Capacitiva)</strong><br>
+                    El panel APM303 y el cableado retienen energía en capacitores. <br>
+                    <em>Control:</em> Desconectar baterías (negativo primero). Aplicar candado LOTO en el cortacorriente. Medir con multímetro en bornes K1 y K6 asegurando voltaje cero.
+                </div>
+                
+                <div class="energy-box">
+                    <strong>🔥 Energía Térmica</strong><br>
+                    El bloque del motor y los sensores retienen altas temperaturas (>90°C) tras la detención.<br>
+                    <em>Control:</em> Esperar tiempo de enfriamiento normado. Uso estricto de guantes térmicos para extraer los sensores de presión y temperatura.
+                </div>
+
+                <div class="energy-box">
+                    <strong>💨 Energía de Presión (Fluidos)</strong><br>
+                    El bulbo del sensor de presión de aceite se encuentra en la galería de lubricación presurizada.<br>
+                    <em>Control:</em> Aflojar la rosca del sensor muy lentamente con paños absorbentes para despresurizar el remanente. Nunca retirar de un solo tirón.
+                </div>
             </div>
 
             <!-- Criticidad FMECA -->
@@ -360,25 +377,17 @@
                             <td>Falsa lectura. Impide la activación del sistema de protección automática ante caídas de presión reales (menor a 0.50 bar) o sobrecalentamiento crítico (sobre 103 °C), arriesgando daño catastrófico.</td>
                         </tr>
                         <tr>
+                            <td><strong>Botón Parada de Emergencia</strong></td>
+                            <td><span style="color:var(--secondary-color); font-weight:bold;">Crítico</span></td>
+                            <td>Falla de contacto interno. Impide el corte manual de energía ante eventos catastróficos u operarios atrapados.</td>
+                        </tr>
+                        <tr>
                             <td><strong>Alarmas del Panel (Falla Oculta)</strong></td>
-                            <td><span style="color:var(--primary-dark); font-weight:bold;">No Crítico (Alto riesgo latente)</span></td>
+                            <td><span style="color:var(--primary-dark); font-weight:bold;">No Crítico (Alto riesgo)</span></td>
                             <td>Falla del LED o zumbador del panel. Es una falla oculta; no afecta la operación normal, pero impide alertar al operador si ocurre un evento crítico real.</td>
                         </tr>
                     </table>
                 </div>
-            </div>
-
-            <!-- Herramientas -->
-            <div class="section-card">
-                <h2>🛠️ 3. Herramientas y Equipos Específicos</h2>
-                <p>El trabajo en instrumentación requiere herramientas precisas para evitar cortocircuitos o falsos aprietes:</p>
-                <ul>
-                    <li><strong>Instrumentos de Diagnóstico:</strong> Multímetro digital True-RMS (calibración vigente), calibrador de lazos de corriente (4-20mA).</li>
-                    <li><strong>Herramientas Aisladas:</strong> Juego de destornilladores de precisión dieléctricos (1000V) para borneras K1 y K6 del APM303.</li>
-                    <li><strong>Protección Electrónica:</strong> Pulsera o guantes antiestáticos (ESD) para manipulación de placas de control.</li>
-                    <li><strong>Apriete de Precisión:</strong> Torquímetro de rango bajo. Los sensores del bloque requieren un apriete exacto para asentar la arandela de cobre sin fisurar la rosca del block.</li>
-                    <li><strong>Galgas de Espesores (Feeler Gauge):</strong> Obligatorias para calibrar la distancia del sensor de velocidad magnético.</li>
-                </ul>
             </div>
 
             <div class="img-placeholder">
@@ -386,55 +395,65 @@
                 <p><em>Figura 1: Interfaz del Controlador APM303.</em></p>
             </div>
 
+            <!-- Herramientas y Horas-Hombre -->
+            <div class="section-card">
+                <h2>🛠️ 3. Planificación: Horas-Hombre y Herramientas</h2>
+                
+                <p><strong>Estimación de Horas-Hombre:</strong> La intervención total se estima en <strong>4.0 HH</strong> (Ejecutada obligatoriamente por 1 Eléctrico/Instrumentista y 1 Mecánico durante 2.0 horas).</p>
+
+                <p>El trabajo en instrumentación requiere herramientas precisas para evitar cortocircuitos o falsos aprietes:</p>
+                <ul>
+                    <li><strong>Instrumentos de Diagnóstico:</strong> Multímetro digital True-RMS (calibración vigente), calibrador de lazos de corriente (4-20mA).</li>
+                    <li><strong>Herramientas Aisladas:</strong> Juego de destornilladores de precisión dieléctricos (1000V) para borneras K1 y K6 del APM303.</li>
+                    <li><strong>Protección Electrónica:</strong> Pulsera o guantes antiestáticos (ESD) para manipulación de placas de control.</li>
+                    <li><strong>Apriete de Precisión:</strong> Torquímetro de rango bajo. Los sensores del bloque requieren un apriete exacto para asentar la arandela de cobre sin fisurar la rosca.</li>
+                    <li><strong>Galgas de Espesores (Feeler Gauge):</strong> Obligatorias para calibrar la distancia del sensor de velocidad magnético.</li>
+                </ul>
+            </div>
+
             <!-- Procedimiento -->
             <div class="section-card">
                 <h2>⚙️ 4. Procedimiento Específico de Mantenimiento</h2>
                 
                 <div class="step-block">
-                    <h3>Fase 1: Desenergización y Energía Cero</h3>
-                    <p>Desconectar la alimentación principal desde el panel frontal. Dirigirse al banco de baterías (24V DC). <strong>Desconectar obligatoriamente el borne negativo (-) primero</strong> para evitar arcos eléctricos, seguido del positivo (+). Instalar candado LOTO en el cortacorriente. Medir con multímetro en las borneras del panel para confirmar ausencia de voltaje.</p>
+                    <h3>Fase 1: Aislamiento Eléctrico del Panel</h3>
+                    <p>Aplicar el Protocolo LOTO (Ver sección 1). Con la pulsera antiestática colocada, abrir la consola central. Inspeccionar visualmente las placas de circuito impreso en busca de puntos de sobrecalentamiento. Retirar los conectores traseros (terminales de voltaje K6 y alimentación K1), aplicar limpiador de contactos dieléctrico de secado rápido. Rearmar asegurando la fijación mecánica de los bornes para evitar vibraciones inducidas por el motor.</p>
                 </div>
 
-                <div class="img-placeholder">
-                    <img src="foto_loto.jpg" alt="Bloqueo de Baterías">
-                    <p><em>Figura 2: Aislamiento seguro del banco de baterías 24V.</em></p>
-                </div>
-
-                <div class="step-block">
-                    <h3>Fase 2: Mantenimiento Controlador APM303</h3>
-                    <p>Con la pulsera antiestática colocada, abrir la consola central. Inspeccionar visualmente las placas de circuito impreso en busca de puntos de sobrecalentamiento. Retirar los conectores traseros (terminales de voltaje K6 y alimentación K1), aplicar limpiador de contactos dieléctrico de secado rápido. Rearmar asegurando la fijación mecánica de los bornes para evitar vibraciones inducidas por el motor.</p>
-                </div>
-
-                <!-- IMAGEN DESPUÉS DE LA FASE 2 -->
                 <div class="img-placeholder">
                     <img src="foto_limpieza.jpg" alt="Borneras traseras Controlador APM303">
-                    <p><em>Figura 3: Conexiones traseras y borneras K1 y K6 del controlador.</em></p>
+                    <p><em>Figura 2: Conexiones traseras y borneras K1 y K6 del controlador APM303.</em></p>
                 </div>
 
                 <div class="step-block">
-                    <h3>Fase 3: Gobernador y Calibración de Sensor Magnético (Pickup)</h3>
-                    <p>Inspeccionar el varillaje del actuador en la bomba de inyección; debe tener un recorrido suave y sin juego excesivo. Localizar el Magnetic Speed Sensor en la carcasa de la cercha del volante. <br><br><strong>Calibración Crítica:</strong> Retirar el sensor, limpiar la punta magnética de limaduras metálicas. Reinstalar roscando suavemente hasta que la punta toque la cresta de un diente del volante de inercia. Desde ese punto, retroceder el sensor girándolo hacia afuera exactamente 3/4 de vuelta para lograr el <strong>"Air Gap" especificado de 0.45 mm (0.020 pulgadas)</strong>. Fijar firmemente con la contratuerca.</p>
+                    <h3>Fase 2: Calibración de Sensor Magnético (Pickup) y Actuador</h3>
+                    <p>Inspeccionar el varillaje del actuador en la bomba de inyección; debe tener un recorrido suave y sin juego excesivo. Localizar el Magnetic Speed Sensor en la carcasa del volante. <br><br><strong>Calibración Crítica:</strong> Retirar el sensor, limpiar la punta magnética de limaduras metálicas. Reinstalar roscando suavemente hasta que la punta toque la cresta de un diente del volante de inercia. Desde ese punto, retroceder el sensor girándolo hacia afuera exactamente 3/4 de vuelta para lograr el <strong>"Air Gap" especificado de 0.45 mm</strong>. Fijar firmemente con la contratuerca.</p>
                 </div>
 
                 <div class="img-placeholder">
                     <img src="foto_pickup.jpg" alt="Ajuste de Sensor Magnético">
-                    <p><em>Figura 4: Actuador electrónico y esquema de ajuste de la luz del sensor de velocidad.</em></p>
+                    <p><em>Figura 3: Actuador electrónico y esquema de ajuste de la luz del sensor de velocidad.</em></p>
                 </div>
 
                 <div class="step-block">
-                    <h3>Fase 4: Inspección de Sensores de Bloque</h3>
-                    <p>Desconectar los arneses eléctricos de los sensores de presión de aceite y temperatura del refrigerante. Medir resistencia interna con multímetro y comparar con la curva óhmica del fabricante. Si se requiere reemplazo, limpiar meticulosamente la rosca del bloque, aplicar sellador de roscas de teflón líquido (no cinta) e instalar aplicando torque con herramienta calibrada. Limpiar cualquier derrame superficial.</p>
+                    <h3>Fase 3: Medición de Sensores y Limpieza del Bloque</h3>
+                    <p>Desconectar los arneses eléctricos de los sensores de presión de aceite y temperatura del refrigerante. Medir resistencia interna con multímetro y comparar con la curva óhmica del fabricante. Si se requiere reemplazo, aflojar según la indicación de energía residual (Presión), aplicar sellador de roscas de teflón líquido (no cinta) al sensor nuevo e instalar aplicando torque con herramienta calibrada. Limpiar cualquier derrame superficial.</p>
                 </div>
 
                 <div class="img-placeholder">
                     <img src="foto_sensores.jpg" alt="Sensores del Motor Doosan">
-                    <p><em>Figura 5: Ubicación de los sensores de medición en el bloque del motor.</em></p>
+                    <p><em>Figura 4: Ubicación de los sensores de medición en el bloque del motor.</em></p>
                 </div>
 
                 <div class="step-block">
-                    <h3>Fase 5: Permisos y Gestión de Residuos</h3>
-                    <p><strong>Permiso de Trabajo (PT):</strong> Esta intervención requiere firma de PT eléctrico debido a la manipulación de los bancos de baterías y borneras del APM303.<br>
-                    <strong>Gestión de Residuos:</strong> Los componentes electrónicos reemplazados y paños con solvente dieléctrico deben ser dispuestos en contenedores de residuos peligrosos (RESPEL) debidamente rotulados, prohibiendo su mezcla con basura común.</p>
+                    <h3>Fase 4: Prueba de la Parada de Emergencia</h3>
+                    <p>Con las baterías conectadas pero el motor detenido, accionar físicamente el botón rojo tipo "hongo" (Parada de Emergencia). Comprobar en el display del APM303 que el sistema registre el estado de falla de emergencia. Girar el botón para liberarlo y presionar el botón "Stop" en el panel para resetear (limpiar) la falla de la memoria.</p>
+                </div>
+
+                <div class="step-block">
+                    <h3>Fase 5: Permisos y Gestión de Residuos (MARPOL)</h3>
+                    <p>Asegurar la firma del Permiso de Trabajo Eléctrico.<br>
+                    <strong>Gestión de Residuos:</strong> Los componentes electrónicos reemplazados y los paños impregnados con solvente dieléctrico o trazas de aceite deben disponerse en tambores de Residuos Peligrosos (RESPEL) certificados, cumpliendo con los estándares del <strong>Anexo I del MARPOL</strong> para la prevención de la contaminación.</p>
                 </div>
 
             </div>
@@ -445,29 +464,29 @@
                 <p>Una vez finalizado el mantenimiento físico, valide estrictamente cada uno de los siguientes pasos para retornar el equipo a servicio seguro.</p>
                 
                 <div class="checklist-container">
-                    <label class="check-item"><input type="checkbox"> Inspección visual 360° completada; herramientas y trapos retirados del área del motor y tableros.</label>
-                    <label class="check-item"><input type="checkbox"> Retiro de candados y tarjetas LOTO por el personal autorizado.</label>
+                    <label class="check-item"><input type="checkbox"> Inspección visual 360° completada; herramientas y paños retirados del área del motor y tableros.</label>
                     <label class="check-item"><input type="checkbox"> Conexión del banco de baterías 24V. <strong>(Conectar positivo [+] primero, negativo [-] al final)</strong>.</label>
-                    <label class="check-item"><input type="checkbox"> Inicialización del panel APM303. Pantalla de inicio carga sin fallas de memoria.</label>
-                    <label class="check-item"><input type="checkbox"> Navegar a "Pantalla 6" (Eventos/Anomalías) del controlador y confirmar ausencia de alarmas activas previas al arranque.</label>
+                    <label class="check-item"><input type="checkbox"> Retiro de candados y etiquetas LOTO del cortacorriente por el personal autorizado.</label>
+                    <label class="check-item"><input type="checkbox"> Inicialización del panel APM303. Pantalla de inicio carga sin fallas de memoria (EEPROM OK).</label>
+                    <label class="check-item"><input type="checkbox"> Navegar a "Pantalla 6" (Eventos/Anomalías) del APM303 y confirmar ausencia de alarmas activas previas al arranque.</label>
+                    <label class="check-item"><input type="checkbox"> Verificar liberación exitosa del Botón de Parada de Emergencia probado en la Fase 4.</label>
                     <label class="check-item"><input type="checkbox"> Ejecutar arranque en modo <strong>MANUAL</strong> (botón verde del panel). Confirmar desenganche correcto del motor de arranque.</label>
-                    <label class="check-item"><input type="checkbox"> Verificar parámetros de estabilización: Velocidad a 1500 RPM, Frecuencia estable en 50 Hz.</label>
+                    <label class="check-item"><input type="checkbox"> Verificar parámetros del gobernador: Velocidad establece a 1500 RPM sin oscilaciones, Frecuencia estable en 50 Hz.</label>
                     <label class="check-item"><input type="checkbox"> Monitorear Pantalla 4: Presión de aceite operando de forma estable por sobre el límite mínimo del fabricante (> 0.50 bar).</label>
-                    <label class="check-item"><input type="checkbox"> Inspección dinámica: Revisar visualmente ausencia de fugas de fluidos en las roscas de los sensores intervenidos con el equipo bajo presión.</label>
-                    <label class="check-item"><input type="checkbox"> Pasar el controlador de modo MANUAL a modo <strong>AUTO</strong>. El equipo queda disponible para la red.</label>
+                    <label class="check-item"><input type="checkbox"> Inspección de estanqueidad: Revisar visualmente ausencia de fugas de fluidos en las roscas de los sensores intervenidos con el equipo bajo presión.</label>
+                    <label class="check-item"><input type="checkbox"> Pasar el controlador APM303 de modo MANUAL a modo <strong>AUTO</strong>. El equipo queda en Standby, disponible para la red eléctrica.</label>
                 </div>
             </div>
 
             <div class="img-placeholder">
                 <img src="foto_funcionando.jpg" alt="Pruebas de Funcionamiento">
-                <p><em>Figura 6: Verificación final de parámetros en tiempo real en pantalla APM303.</em></p>
+                <p><em>Figura 5: Verificación final de parámetros en tiempo real en pantalla APM303.</em></p>
             </div>
 
         </div>
     </div>
 
     <script>
-        // Banco de 10 preguntas (EPP y LOTO)
         const allQuestions = [
             { q: "Según el protocolo de seguridad para la intervención de este equipo, ¿cuántas personas como mínimo deben participar?", options: ["1 persona", "2 personas", "No hay mínimo"], ans: 1 },
             { q: "Antes de intervenir el panel de control y sensores, ¿cuál es el primer paso obligatorio?", options: ["Desconectar un sensor", "Aplicar Bloqueo y Etiquetado (LOTO)", "Dar arranque manual"], ans: 1 },

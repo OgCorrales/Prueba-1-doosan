@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Gestión de Mantenimiento - Sistema 7: Control e Instrumentación</title>
+    <title>Gestión de Mantenimiento - Instrumentación Doosan</title>
     <style>
         :root {
-            var(--primary-color): #77ACA2; /* Nuevo color principal */
             --primary-color: #77ACA2; 
-            --primary-dark: #5a877e; /* Tono más oscuro para botones en hover */
+            --primary-dark: #5a877e; 
             --secondary-color: #e3000f;
             --bg-color: #f0f2f5;
             --text-color: #333;
@@ -33,7 +32,7 @@
             padding: 1.5rem 1rem;
             border-bottom: 5px solid var(--secondary-color);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* Sombra para resaltar texto blanco sobre el nuevo color */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
 
         header h1 { 
@@ -159,7 +158,6 @@
             gap: 10px;
         }
 
-        /* Tablas responsivas */
         .table-responsive {
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
@@ -189,7 +187,6 @@
 
         tr:nth-child(even) { background-color: #f8f9fa; }
 
-        /* Contenedores de Imágenes Dinámicos */
         .img-placeholder {
             background-color: #f5f9f8;
             border: 2px dashed var(--primary-color);
@@ -211,7 +208,17 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
-        /* Paso a paso profesional */
+        .img-instruction {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            background: white;
+            padding: 10px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
         .step-block {
             background: #fdfdfd;
             border-left: 4px solid var(--primary-color);
@@ -230,7 +237,6 @@
         ul { padding-left: 20px; }
         li { margin-bottom: 10px; }
 
-        /* Checklists Interactivos */
         .checklist-container {
             background-color: #f0f7f4;
             border: 1px solid #c3e6cb;
@@ -262,7 +268,6 @@
             accent-color: var(--primary-color);
         }
 
-        /* ----- MEDIA QUERIES (Smartphone) ----- */
         @media (max-width: 768px) {
             body { font-size: 15px; }
             .container { margin: 15px auto; padding: 0 10px; }
@@ -276,6 +281,7 @@
 <body>
 
     <header>
+        <!-- Texto corregido exactamente como pediste -->
         <h1>Mantenimiento Doosan P126TI-II</h1>
     </header>
 
@@ -297,6 +303,12 @@
         <!-- ================= MANUAL TÉCNICO ================= -->
         <div id="manual-container">
 
+            <!-- Imagen Inicial del Equipo -->
+            <div class="img-placeholder" style="border: none; background: transparent; padding: 0; margin-bottom: 20px;">
+                <div class="img-instruction">📷 Reemplaza 'generador_sdmo.jpg' con la imagen del grupo Kohler azul</div>
+                <img src="generador_sdmo.jpg" alt="Grupo Electrógeno Kohler SDMO D330" style="box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-radius: 12px;">
+            </div>
+
             <!-- Checklist de EPP -->
             <div class="section-card">
                 <h2>👷‍♂️ 0. Verificación Previa de EPP y Elementos Personales</h2>
@@ -311,6 +323,7 @@
                 </div>
             </div>
             
+            <!-- Protocolo LOTO -->
             <div class="section-card">
                 <h2>🔒 1. Protocolo Cero: Bloqueo y Etiquetado (LOTO)</h2>
                 <p>Antes de cualquier intervención en el sistema de control, ejecute el siguiente procedimiento obligatorio para aislar las energías residuales:</p>
@@ -322,6 +335,7 @@
                 </ul>
             </div>
 
+            <!-- Criticidad FMECA -->
             <div class="section-card">
                 <h2>📊 2. Criticidad de Subconjuntos (FMECA)</h2>
                 <div class="table-responsive">
@@ -344,17 +358,18 @@
                         <tr>
                             <td><strong>Sensores de Presión/Temp.</strong></td>
                             <td><span style="color:var(--secondary-color); font-weight:bold;">Crítico</span></td>
-                            <td>Falsa lectura (Resistencia fuera de rango). Impide la activación del sistema de protección automática, arriesgando daño catastrófico al motor.</td>
+                            <td>Falsa lectura. Impide la activación del sistema de protección automática ante caídas de presión reales (menor a 0.50 bar) o sobrecalentamiento crítico (sobre 103 °C), arriesgando daño catastrófico.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Alarmas del Panel (Falla Oculta)</strong></td>
+                            <td><span style="color:var(--primary-dark); font-weight:bold;">No Crítico (Alto riesgo latente)</span></td>
+                            <td>Falla del LED o zumbador del panel. Es una falla oculta; no afecta la operación normal, pero impide alertar al operador si ocurre un evento crítico real.</td>
                         </tr>
                     </table>
                 </div>
             </div>
 
-            <div class="img-placeholder">
-                <img src="foto_panel.jpg" alt="Panel Controlador APM303">
-                <p><em>Figura 1: Vista general del controlador APM303.</em></p>
-            </div>
-
+            <!-- Herramientas -->
             <div class="section-card">
                 <h2>🛠️ 3. Herramientas y Equipos Específicos</h2>
                 <p>El trabajo en instrumentación requiere herramientas precisas para evitar cortocircuitos o falsos aprietes:</p>
@@ -367,6 +382,13 @@
                 </ul>
             </div>
 
+            <div class="img-placeholder">
+                <div class="img-instruction">📷 Reemplaza 'foto_panel.jpg' con el panel APM303 (cec9bc 2.pdf - Pág. 5)</div>
+                <img src="foto_panel.jpg" alt="Panel Controlador APM303">
+                <p><em>Figura 1: Interfaz del Controlador APM303.</em></p>
+            </div>
+
+            <!-- Procedimiento -->
             <div class="section-card">
                 <h2>⚙️ 4. Procedimiento Específico de Mantenimiento</h2>
                 
@@ -376,6 +398,7 @@
                 </div>
 
                 <div class="img-placeholder">
+                    <div class="img-instruction">📷 Reemplaza 'foto_loto.jpg' con una foto real de tu banco de baterías o candado LOTO</div>
                     <img src="foto_loto.jpg" alt="Bloqueo de Baterías">
                     <p><em>Figura 2: Aislamiento seguro del banco de baterías 24V.</em></p>
                 </div>
@@ -385,8 +408,9 @@
                     <p>Con la pulsera antiestática colocada, abrir la consola central. Inspeccionar visualmente las placas de circuito impreso en busca de puntos de sobrecalentamiento. Retirar los conectores traseros (terminales de voltaje K6 y alimentación K1), aplicar limpiador de contactos dieléctrico de secado rápido. Rearmar asegurando la fijación mecánica de los bornes para evitar vibraciones inducidas por el motor.</p>
                 </div>
 
-                <!-- Nueva imagen insertada después de la Fase 2 -->
+                <!-- IMAGEN DESPUÉS DE LA FASE 2 -->
                 <div class="img-placeholder">
+                    <div class="img-instruction">📷 Reemplaza 'foto_limpieza.jpg' con las conexiones traseras (cec9bc 2.pdf - Pág. 17)</div>
                     <img src="foto_limpieza.jpg" alt="Borneras traseras Controlador APM303">
                     <p><em>Figura 3: Conexiones traseras y borneras K1 y K6 del controlador.</em></p>
                 </div>
@@ -397,8 +421,9 @@
                 </div>
 
                 <div class="img-placeholder">
+                    <div class="img-instruction">📷 Reemplaza 'foto_pickup.jpg' con la imagen del Actuador Integral (de12t.pdf - Pág. 125)</div>
                     <img src="foto_pickup.jpg" alt="Ajuste de Sensor Magnético">
-                    <p><em>Figura 4: Actuador electrónico y esquema de ajuste de la luz (Air gap) del sensor de velocidad.</em></p>
+                    <p><em>Figura 4: Actuador electrónico y esquema de ajuste de la luz del sensor de velocidad.</em></p>
                 </div>
 
                 <div class="step-block">
@@ -407,8 +432,15 @@
                 </div>
 
                 <div class="img-placeholder">
+                    <div class="img-instruction">📷 Reemplaza 'foto_sensores.jpg' con los sensores del motor (509833079-P126TI-DE12T-PARTBOOK.pdf - Pág. 184)</div>
                     <img src="foto_sensores.jpg" alt="Sensores del Motor Doosan">
                     <p><em>Figura 5: Ubicación de los sensores de medición en el bloque del motor.</em></p>
+                </div>
+
+                <div class="step-block">
+                    <h3>Fase 5: Permisos y Gestión de Residuos</h3>
+                    <p><strong>Permiso de Trabajo (PT):</strong> Esta intervención requiere firma de PT eléctrico debido a la manipulación de los bancos de baterías y borneras del APM303.<br>
+                    <strong>Gestión de Residuos:</strong> Los componentes electrónicos reemplazados y paños con solvente dieléctrico deben ser dispuestos en contenedores de residuos peligrosos (RESPEL) debidamente rotulados, prohibiendo su mezcla con basura común.</p>
                 </div>
 
             </div>
@@ -426,13 +458,14 @@
                     <label class="check-item"><input type="checkbox"> Navegar a "Pantalla 6" (Eventos/Anomalías) del controlador y confirmar ausencia de alarmas activas previas al arranque.</label>
                     <label class="check-item"><input type="checkbox"> Ejecutar arranque en modo <strong>MANUAL</strong> (botón verde del panel). Confirmar desenganche correcto del motor de arranque.</label>
                     <label class="check-item"><input type="checkbox"> Verificar parámetros de estabilización: Velocidad a 1500 RPM, Frecuencia estable en 50 Hz.</label>
-                    <label class="check-item"><input type="checkbox"> Monitorear Pantalla 4: Presión de aceite por sobre el rango mínimo operativo (> 3.0 bar).</label>
+                    <label class="check-item"><input type="checkbox"> Monitorear Pantalla 4: Presión de aceite operando de forma estable por sobre el límite mínimo del fabricante (> 0.50 bar).</label>
                     <label class="check-item"><input type="checkbox"> Inspección dinámica: Revisar visualmente ausencia de fugas de fluidos en las roscas de los sensores intervenidos con el equipo bajo presión.</label>
                     <label class="check-item"><input type="checkbox"> Pasar el controlador de modo MANUAL a modo <strong>AUTO</strong>. El equipo queda disponible para la red.</label>
                 </div>
             </div>
 
             <div class="img-placeholder">
+                <div class="img-instruction">📷 Reemplaza 'foto_funcionando.jpg' con la pantalla de valores mecánicos (cec9bc 2.pdf - Pág. 7)</div>
                 <img src="foto_funcionando.jpg" alt="Pruebas de Funcionamiento">
                 <p><em>Figura 6: Verificación final de parámetros en tiempo real en pantalla APM303.</em></p>
             </div>
@@ -441,6 +474,7 @@
     </div>
 
     <script>
+        // Banco de 10 preguntas (EPP y LOTO)
         const allQuestions = [
             { q: "Según el protocolo de seguridad para la intervención de este equipo, ¿cuántas personas como mínimo deben participar?", options: ["1 persona", "2 personas", "No hay mínimo"], ans: 1 },
             { q: "Antes de intervenir el panel de control y sensores, ¿cuál es el primer paso obligatorio?", options: ["Desconectar un sensor", "Aplicar Bloqueo y Etiquetado (LOTO)", "Dar arranque manual"], ans: 1 },
